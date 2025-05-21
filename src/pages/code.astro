@@ -10,33 +10,59 @@ const meta = {
 <PageLayout meta={meta}>
 	<h1 class="title mb-6">About</h1>
 	<div>
-	<h2>
+		<h2 id="languages">Languages</h2>
+		<p class="flex gap-4 items-center text-lg py-2">
+			<a href="https://github.com/alyraffauf?tab=repositories&q=&type=&language=ruby&sort=" class="text-blue-600 hover:text-blue-800">JAVA</a>
+			::
+			<a href="https://github.com/alyraffauf?tab=repositories&q=&type=&language=ruby&sort=" class="text-blue-600 hover:text-blue-800">NIX</a>
+			::
+			<a href="https://github.com/alyraffauf?tab=repositories&q=&type=&language=ruby&sort=" class="text-blue-600 hover:text-blue-800">HTML</a>
+			::
+			<a href="https://github.com/alyraffauf?tab=repositories&q=&type=&language=ruby&sort=" class="text-blue-600 hover:text-blue-800">CSS</a>
+		</p>
+		<!-- Need to add padding btw here-->
+		<hr class="my-8 mx-auto max-w-4xl border-t border-gray-200 dark:border-gray-700">
 
-	</h2>
+		<h2 id="cool-stuff" class="text-2xl font-bold mb-4 group">
+			Cool Stuff
+			<a class="hanchor opacity-0 group-hover:opacity-100 hover:text-gray-600" href="#cool-stuff" aria-label="Anchor">#</a>
+		</h2>
 	</div>
-	<div class="prose prose-sm prose-cactus max-w-none">
-		<p>
-		Welcome to my code repository! Here you'll find various code templates, snippets and projects
-		that I've created and want to share. I regularly update this section with well-documented examples
-		that you can find on my GitHub.
-		</p>
-		<p>Here are my some cool stuff I've built</p>
-		<ul class="list-inside list-disc" role="list">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
-		<p>
-			Clone or fork my <a
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
-				rel="noreferrer"
-				target="_blank">repo</a
-			> if you like me!
-		</p>
-	</div>
+	<ul class="space-y-4">
+		<li class="hover:bg-gray-50 p-2 rounded">
+			<a href="https://github.com/alyraffauf/nixcfg" class="text-blue-600 hover:text-blue-800">nixcfg</a> :: <a href="https://nixos.org/" class="text-blue-600 hover:text-blue-800"
+				>Nix</a
+			> modules for laptops, servers, and everything in between.
+		</li><li class="hover:bg-gray-50 p-2 rounded">
+			<a href="https://github.com/alyraffauf/slateblue" class="text-blue-600 hover:text-blue-800">slateblue</a> :: Developer-centric cloud-native
+			OS based on <a href="https://fedoraproject.org/" class="text-blue-600 hover:text-blue-800">Fedora</a> and <a
+				href="https://github.com/alyraffauf/ublue" class="text-blue-600 hover:text-blue-800">ublue</a
+			>.
+		</li><li class="hover:bg-gray-50 p-2 rounded">
+			<a href="https://github.com/alyraffauf/morgantamayo.com" class="text-blue-600 hover:text-blue-800">morgantamayo.com</a> :: Resume-style all-custom
+			website using <a href="https://jekyllrb.com/" class="text-blue-600 hover:text-blue-800">Jekyll</a>.
+		</li><li class="hover:bg-gray-50 p-2 rounded">
+			<a href="https://github.com/alyraffauf/ghdp" class="text-blue-600 hover:text-blue-800">ghdp</a> :: Social network visualization of global
+			health NGO data in <a href="https://www.r-project.org/" class="text-blue-600 hover:text-blue-800">R</a>.
+		</li><li class="hover:bg-gray-50 p-2 rounded">
+			<a href="https://github.com/alyraffauf/qor" class="text-blue-600 hover:text-blue-800">qor</a> :: <a
+				href="https://en.wikipedia.org/wiki/Space_Invaders" class="text-blue-600 hover:text-blue-800">Space Invaders</a
+			> clone for <a href="https://www.python.org/" class="text-blue-600 hover:text-blue-800">Python</a> + <a href="https://www.pygame.org/" class="text-blue-600 hover:text-blue-800"
+				>Pygame</a
+			>.
+		</li><li class="hover:bg-gray-50 p-2 rounded">
+			<a href="https://github.com/alyraffauf/post" class="text-blue-600 hover:text-blue-800">post</a> :: Package manager with native <a
+				href="https://www.ruby-lang.org/" class="text-blue-600 hover:text-blue-800">Ruby</a
+			> and <a href="https://yaml.org/" class="text-blue-600 hover:text-blue-800">YAML</a> build scripts.
+		</li>
+	</ul>
+
+	<p>
+		Clone or fork my <a
+			class="cactus-link inline-block"
+			href="https://github.com/chrismwilliams/astro-cactus"
+			rel="noreferrer"
+			target="_blank">repo</a
+		> if you like me!
+	</p>
 </PageLayout>
