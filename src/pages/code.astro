@@ -6,12 +6,13 @@ const meta = {
 	title: "Code",
 };
 ---
+
 <!-- TODO: Change color for cactus link and inline block, colur needs to remain same -->
 <PageLayout meta={meta}>
-	<h1 class="title mb-6">About</h1>
+	<h1 class="title mb-6">Languages</h1>
 	<div>
-		<h2 id="languages">Languages</h2>
-		<p class="flex items-center gap-4 py-2 text-lg">
+		<!-- <h2 id="languages">Languages</h2> -->
+		<p class="flex items-center gap-4 py-2 text-lg font-bold">
 			<a
 				href="https://github.com/alyraffauf?tab=repositories&q=&type=&language=ruby&sort="
 				class="text-blue-600 hover:text-blue-800">JAVA</a
@@ -33,9 +34,9 @@ const meta = {
 			>
 		</p>
 		<!-- Need to add paddi -->
-		<hr class="mx-auto my-8 max-w-4xl border-t border-gray-200 dark:border-gray-700" />
+		<hr class="mx-auto my-8 max-w-4xl border-4 border-gray-200 dark:border-gray-700" />
 
-		<h2 id="cool-stuff" class="group mb-4 text-2xl font-bold">
+		<h2 id="cool-stuff" class="group mb-4 text-xl font-bold">
 			Cool Stuff
 			<a
 				class="hanchor opacity-0 group-hover:opacity-100 hover:text-gray-600"
@@ -48,7 +49,7 @@ const meta = {
 		<li class="rounded p-2 hover:bg-gray-50">
 			<a
 				href="https://github.com/alyraffauf/nixcfg"
-				class="cactus-link inline-block text-blue-600 hover:text-blue-800">nixcfg</a
+				class="cactus-link inline-block font-bold text-blue-600 hover:text-blue-800">nixcfg</a
 			> :: <a
 				target="_blank"
 				href="https://nixos.org/"
@@ -57,11 +58,12 @@ const meta = {
 		</li>
 
 		<li class="rounded p-2 hover:bg-gray-50">
-			<a href="https://github.com/alyraffauf/slateblue" class="text-blue-600 hover:text-blue-800"
-				>slateblue</a
+			<a
+				href="https://github.com/alyraffauf/slateblue"
+				class="font-bold text-blue-600 hover:text-blue-800">slateblue</a
 			> :: Developer-centric cloud-native OS based on <a
 				href="https://fedoraproject.org/"
-				class="text-blue-600 hover:text-blue-800 cactus-link inline-block">Fedora</a
+				class="cactus-link inline-block font-bold text-blue-600 hover:text-blue-800">Fedora</a
 			> and <a href="https://github.com/alyraffauf/ublue" class="text-blue-600 hover:text-blue-800"
 				>ublue</a
 			>.
@@ -70,7 +72,7 @@ const meta = {
 		<li class="rounded p-2 hover:bg-gray-50">
 			<a
 				href="https://github.com/alyraffauf/morgantamayo.com"
-				class="text-blue-600 hover:text-blue-800 cactus-link inline-block">morgantamayo.com</a
+				class="cactus-link inline-block text-blue-600 hover:text-blue-800">morgantamayo.com</a
 			> :: Resume-style all-custom website using <a
 				href="https://jekyllrb.com/"
 				class="text-blue-600 hover:text-blue-800">Jekyll</a
@@ -81,26 +83,38 @@ const meta = {
 			<a href="https://github.com/alyraffauf/ghdp" class="text-blue-600 hover:text-blue-800">ghdp</a
 			> :: Social network visualization of global health NGO data in <a
 				href="https://www.r-project.org/"
-				class="text-blue-600 hover:text-blue-800 cactus-link inline-block">R</a
+				class="cactus-link inline-block text-blue-600 hover:text-blue-800">R</a
 			>.
 		</li>
 
 		<li class="rounded p-2 hover:bg-gray-50">
-			<a href="https://github.com/alyraffauf/qor" class="text-blue-600 hover:text-blue-800 cactus-link inline-block">qor</a> ::
+			<a
+				href="https://github.com/alyraffauf/qor"
+				class="cactus-link inline-block text-blue-600 hover:text-blue-800">qor</a
+			> ::
 			<a
 				href="https://en.wikipedia.org/wiki/Space_Invaders"
-				class="text-blue-600 hover:text-blue-800 cactus-link inline-block">Space Invaders</a
-			> clone for <a href="https://www.python.org/" class="text-blue-600 hover:text-blue-800 cactus-link inline-block"
-				>Python</a
-			> + <a href="https://www.pygame.org/" class="text-blue-600 hover:text-blue-800 cactus-link inline-block">Pygame</a>.
+				class="cactus-link inline-block text-blue-600 hover:text-blue-800">Space Invaders</a
+			> clone for <a
+				href="https://www.python.org/"
+				class="cactus-link inline-block text-blue-600 hover:text-blue-800">Python</a
+			> + <a
+				href="https://www.pygame.org/"
+				class="cactus-link inline-block text-blue-600 hover:text-blue-800">Pygame</a
+			>.
 		</li>
 
 		<li class="rounded p-2 hover:bg-gray-50">
-			<a href="https://github.com/alyraffauf/post" class="text-blue-600 hover:text-blue-800 cactus-link inline-block">post</a
+			<a
+				href="https://github.com/alyraffauf/post"
+				class="cactus-link inline-block text-blue-600 hover:text-blue-800">post</a
 			> :: Package manager with native <a
 				href="https://www.ruby-lang.org/"
 				class="text-blue-600 hover:text-blue-800">Ruby</a
-			> and <a href="https://yaml.org/" class="text-blue-600 hover:text-blue-800 cactus-link inline-block">YAML</a> build scripts.
+			> and <a
+				href="https://yaml.org/"
+				class="cactus-link inline-block text-blue-600 hover:text-blue-800">YAML</a
+			> build scripts.
 		</li>
 	</ul>
 
