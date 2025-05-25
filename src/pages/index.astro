@@ -49,8 +49,9 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 		</ul>
 	</section>
 	{
+	// I dont want to have the note in the homepage
 		latestNotes.length > 0 && (
-			<section class="mt-16">
+			<!-- <section class="mt-16">
 				<h2 class="title text-accent mb-6 text-xl">
 					<a href="/notes/">Notes</a>
 				</h2>
@@ -61,7 +62,7 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 						</li>
 					))}
 				</ul>
-			</section>
+			</section> -->
 		)
 	}
 </PageLayout>
