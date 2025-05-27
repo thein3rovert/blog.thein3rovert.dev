@@ -1,0 +1,23 @@
+services:
+  astro-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${IMAGE_NAME}:latest
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - "8080:80"  # Changed to 8080 to avoid conflicts with other services
+    restart: unless-stopped
+    networks:
+      - local
+    #   - traefik-public
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.astro.rule=Host(`your-domain.com`)"
+    #   - "traefik.http.services.astro.loadbalancer.server.port=80"
+
+networks:
+  local:
+    driver: bridge
+  # traefik-public:
+  #   external: true
