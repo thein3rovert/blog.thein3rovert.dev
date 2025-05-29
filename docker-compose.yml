@@ -6,18 +6,20 @@ services:
     image: ${IMAGE_NAME}:latest
     container_name: ${CONTAINER_NAME}
     ports:
-      - "8080:80"  # Changed to 8080 to avoid conflicts with other services
+      - "8080:3001"  # Container listens on 80, exposed as 8080
     restart: unless-stopped
     networks:
       - local
-    #   - traefik-public
-    # labels:
-    #   - "traefik.enable=true"
-    #   - "traefik.http.routers.astro.rule=Host(`your-domain.com`)"
-    #   - "traefik.http.services.astro.loadbalancer.server.port=80"
+      - traefik_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.astro-app.rule=Host(`blog.thein3rovert.dev`)"
+      - "traefik.http.routers.astro-app.entrypoints=web"
+      - "traefik.http.services.astro-app.loadbalancer.server.port=3001"
 
 networks:
+  traefik_proxy:
+    external: true
   local:
     driver: bridge
-  # traefik-public:
-  #   external: true
+
