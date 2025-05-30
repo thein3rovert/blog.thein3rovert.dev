@@ -6,7 +6,7 @@ services:
     image: ${IMAGE_NAME}:latest
     container_name: ${CONTAINER_NAME}
     ports:
-      - "8080:3001"  # Container listens on 80, exposed as 8080
+      - "8080:3001"
     restart: unless-stopped
     networks:
       - local
@@ -14,8 +14,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.astro-app.rule=Host(`blog.thein3rovert.dev`)"
-      - "traefik.http.routers.astro-app.entrypoints=web"
-      - "traefik.http.services.astro-app.loadbalancer.server.port=3001"
+      - "traefik.http.routers.astro-app.entrypoints=websecure"
+      - "traefik.http.routers.astro-app.tls=true"
+      - "traefik.http.routers.astro-app.tls.certresolver=godaddy"
+      - "traefik.http.services.astro-app.loadbalancer.server.port=80"
 
 networks:
   traefik_proxy:
