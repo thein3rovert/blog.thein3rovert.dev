@@ -22,12 +22,13 @@ export interface PaginationLink {
   url: string;
 }
 
-export interface SiteMeta {
-  articleDate?: string | undefined;
-  description?: string;
-  ogImage?: string | undefined;
-  title: string;
-}
+// INFO: Site meta has been moved to a dedicated ts file
+// export interface SiteMeta {
+//   articleDate?: string | undefined;
+//   description?: string;
+//   ogImage?: string | undefined;
+//   title: string;
+// }
 
 /** Webmentions */
 export interface WebmentionsFeed {

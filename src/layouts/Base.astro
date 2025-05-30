@@ -4,8 +4,9 @@ import SkipLink from "@/components/SkipLink.astro";
 import ThemeProvider from "@/components/ThemeProvider.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
+import type { SiteMeta } from "@/data/siteMeta";
 import { siteConfig } from "@/site.config";
-import type { SiteMeta } from "@/types";
+// import type { SiteMeta } from "@/types";
 
 interface Props {
 	meta: SiteMeta;
@@ -26,7 +27,7 @@ const {
 		<ThemeProvider />
 		<SkipLink />
 		<Header />
-		<main id="main">
+		<main id="main"  class="flex-1">
 			<slot />
 		</main>
 		<Footer />
