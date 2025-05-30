@@ -16,11 +16,12 @@ export interface SiteConfig {
   url: string;
 }
 
-export interface PaginationLink {
-  srLabel?: string;
-  text?: string;
-  url: string;
-}
+// INFO: Moved to a dedicated ts file
+// export interface PaginationLink {
+//   srLabel?: string;
+//   text?: string;
+//   url: string;
+// }
 
 // INFO: Site meta has been moved to a dedicated ts file
 // export interface SiteMeta {
