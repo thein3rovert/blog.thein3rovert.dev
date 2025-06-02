@@ -4,4 +4,8 @@ interface PaginationLink  {
   srLabel?: string;
 }
 
-export type { PaginationLink };
+interface IElement {
+  readonly as?: keyof HTMLElementTagNameMap;
+}
+
+export type { PaginationLink, IElement };
