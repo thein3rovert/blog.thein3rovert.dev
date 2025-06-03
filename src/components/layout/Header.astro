@@ -1,7 +1,8 @@
 ---
 import Search from "@/components/Search.astro";
 import ThemeToggle from "@/components/ThemeToggle.astro";
-import { menuLinks } from "@/site.config";
+// import { menuLinks } from "@/site.config";
+import { MENU_LINKS } from "@/data/constants"
 import {siteConfig} from "../../site.config";
 ---
 
@@ -40,7 +41,7 @@ import {siteConfig} from "../../site.config";
 			id="navigation-menu"
 		>
 			{
-				menuLinks.map((link) => (
+			 MENU_LINKS.map((link) => (
 					<a
 						aria-current={Astro.url.pathname === link.path ? "page" : false}
 						class="px-4 py-4 underline-offset-2 hover:underline sm:py-0"
