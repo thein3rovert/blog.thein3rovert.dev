@@ -6,7 +6,7 @@ publishDate: "2025-04-07T00:00:00Z"
 
 
 ## What are Azure Resources?
-
+![Alt text](/03-Azure-Resources.png)
 When you create a service in Azure, you always get a **resource** back that you can either use yourself or provide to developers who need it.
 
 In cloud terminology, anything you create on Azure is called a **resource**:
