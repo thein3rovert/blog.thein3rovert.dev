@@ -1,0 +1,34 @@
+---
+// Import necessary types and utilities from Astro
+import type { GetStaticPathsResult } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import PostLayout from "@/layouts/BlogPost.astro";
+import {render} from "astro:content"
+
+// getStaticPaths function generates routes for all blog posts at build time
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+	// Get all posts from the "post" collection
+	const posts: CollectionEntry<"post">[] = await getCollection("post");
+	// Map each post to a route parameter and props object
+	const params = posts.map((post) => ({
+		params: { post: post.id },  // Use post slug for URL
+		props: { post },  // Pass full post object as props
+	}));
+	return params;
+}
+
+// Define props interface for the component
+interface Props {
+	post: CollectionEntry<"post">;
+}
+
+// Extract post from component props
+const { post } = Astro.props;
+// Render the post content to HTML
+const { Content } = await render(post);
+---
+
+<PostLayout post={post}>
+	<Content />
+</PostLayout>
