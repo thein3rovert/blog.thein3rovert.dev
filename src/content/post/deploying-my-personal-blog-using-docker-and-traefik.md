@@ -6,241 +6,190 @@ tags: ["docker", "traefik", "deployment"]
 updatedDate: 28 May 2025
 ---
 
-I'm at a stable phase in development of my personal blog and want to deploy it to my server with Docker. I chose Docker because it's easier for me to deploy Docker images on my server, and I can easily connect it with Traefik, add load balancers, and monitor it. Also, I don't know other deployment methods yet, so for now, this is what I need to get my blog up and running.
+Well, I'm finally ready to deploy my first real web app to a live server!
+## Initial Local Deployment
+Before i decided to deploy the application i have to first perform the following build the project locally on my machine, i did this because It make sure to always test before deployment as a good practise and also if something breaks I can easily identify and fix it. So I:
+- Building the project
+- Creating Docker configuration files (docker-compose.yml, .dockerignore, Dockerfile)
+- Building Docker images
+- Successfully accessing it on my local machine
 
-## Pre-deployment Research
+More details about that local deployment process can be found here [[Deploying my astro blog to docker]].
+After testing the project i then decided to take it further by deploying it publicly to my VPS which has traefik running.
 
-### Static vs Dynamic Site Detection
+I recently set up traefik on server and it of the best thing i my life at the moment, i have never worked or configure a reverse proxy before or even perform deployment without the user of a third party deployment tools but being about to make use of a reverse proxy like traefik is a really good game changer for me and also taught me a lot about SSL\TLS, domain and more.
 
-Before deployment, I needed to check if my blog is static or dynamic. Based on blog posts I read, a dynamic Astro site requires a different build process - you need to install adapters like enabling SSR with Node.js using the Node.js adapter.
+## Building the Project
 
-For dynamic sites, you'd need to install the adapter:
+I cloned my project into my projects folder, then I first ran the project locally on my server using `npm run dev`, i had to do this in other to make sure that the project is running successfully.
 
-```sh
-npx astro add node
-```
+The project ran successfully, then i realised I couldn't view it directly in a browser since it's running over SSH without a GUI. But that's fine - I just needed confirmation that it worked.
 
-This adjusts your `astro.config.mjs` file. Since I don't have this file in my project folder, my site is static, so I don't need to worry about SSR configuration.
+I tried exposing the port over the network using `npm run dev -- --host` but had issues accessing it through my IP address. I suspect this is due to firewall rules on my server blocking access, when I got my server i had to set some firewall rules in other to secure it.
 
-**Reference**: [Astro.js Docker deployment guide](https://deployn.de/en/blog/astrojs-docker/#the-tools-preparing-your-development-environment)
-
-For a static site, all I need to do is:
+Next, I built the project:
 
 ```sh
 npm run build
 ```
 
-This builds my project and generates a `dist` folder containing everything needed to deploy the blog anywhere - no Node.js server required at runtime.
+The build completed quickly, giving me a `dist` folder containing all the static files:
 
-### Docker + Nginx Strategy
-
-Most examples I found show nginx configuration but not Traefik integration. Since I don't know much about nginx yet and don't want to fall into another rabbit hole, I needed to find a Docker-based solution.
-
-**Key insight**: I don't need to install nginx on my system. The nginx in the Dockerfile runs completely inside the container. Docker pulls the nginx image and runs it in the container, while Traefik handles the reverse proxy to my containerized nginx instance.
-
-## Docker Configuration
-
-### Dockerfile
-
-I used a multi-stage build approach:
-
-```dockerfile
-# Dockerfile (for static site)
-
-# ---- Build Stage ----
-# Use an official Node.js image as the base for building
-# 'alpine' versions are smaller
-FROM node:22-alpine AS builder
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy package.json and lock file first to leverage Docker cache
-COPY package*.json ./
-# Install project dependencies
-RUN npm install
-
-# Copy the rest of the application code (respects .dockerignore)
-COPY . .
-# Build the Astro site for production
-RUN npm run build
-# The static files are now in /app/dist
-
-# ---- Runtime Stage ----
-# Use an official Nginx image as the base for serving
-FROM nginx:1.27-alpine AS runtime
-# Set the working directory for Nginx files
-WORKDIR /usr/share/nginx/html
-
-# Remove default Nginx welcome page
-RUN rm -rf ./*
-
-# Copy the built static files from the 'builder' stage
-COPY --from=builder /app/dist .
-
-# Copy our custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port 80 (standard HTTP port)
-EXPOSE 80
-
-# Command to run Nginx in the foreground when the container starts
-CMD ["nginx", "-g", "daemon off;"]
+```sh
+drwxr-xr-x    - thein3rovert 28 May 20:50 -I  dist
 ```
 
-### Initial Docker Compose with Traefik
+I also previewed the build:
 
-Here's my initial Traefik configuration:
+```sh
+npm run preview
+```
 
-```yaml
-version: '3'
+Which showed success:
+
+```sh
+npm run preview
+> personal-blog@6.4.0 preview
+> astro preview
+ astro  v5.6.2 ready in 6 ms
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+```
+
+Now that the project builds successfully, I turned my attention to Docker deployment.
+
+## Docker Deployment Options
+
+I considered two approaches for Docker deployment:
+
+### Option 1: Direct Docker Deployment with Traefik
+
+Why do i have two options? Well i have hosted a few self hosted application using docker with traefik, i use nix to manage my docker application so I don’t really need a docker compose as i can just use `nix-oci-container` to set it up and write the compose file with nix. This is the only way i know how to self host or deploy an application and since my project is using a compose file i need a way to convert the compose file to nix so i can manage it.
+1. Update docker-compose.yml with Traefik labels:
+```yml
+version: '3.9'
 services:
-  astro:
+  myapp:
     build: .
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.astro.rule=Host(`your-domain.com`)"
-      - "traefik.http.services.astro.loadbalancer.server.port=80"
+      - "traefik.http.routers.myapp.rule=Host(`myapp.local`)"
+      - "traefik.http.routers.myapp.entrypoints=web"
+      - "traefik.http.services.myapp.loadbalancer.server.port=80"
     networks:
-      - traefik-public
-
+      - traefik_proxy
 networks:
-  traefik-public:
+  traefik_proxy:
     external: true
 ```
 
-### Adapted Configuration
+2. Create an external Docker network:
+```sh
+docker network create traefik_proxy
+```
 
-I found a reference configuration and adapted it for my needs:
+3. Enable Docker provider in my Traefik config:
+```nix
+services.traefik = {
+  enable = true;
+  staticConfigOptions = {
+    entryPoints.web.address = ":80";
+    providers.docker = {
+      endpoint = "unix:///var/run/docker.sock";
+      exposedByDefault = false; # Enable services only if they have traefik.enable=true
+    };
+  };
+};
+```
 
-```yaml
+4. Grant Traefik access to Docker:
+```nix
+users.users.traefik.extraGroups = [ "docker" ];
+```
+
+### Option 2: Docker Hub Deployment
+This option require me to push my project to docker hub then pull the images using the nix ico container just like how I manage my other self hosted application.
+The downside to this is that i have to do this manually each time i make changes to my application and i am not ready for that yet so this is just a plan b.
+
+1. Tag and push image to Docker Hub:
+```sh
+# Tag your image
+docker tag myapp your-dockerhub-username/myapp:latest
+# Push it to Docker Hub
+docker push your-dockerhub-username/myapp:latest
+```
+
+2. Update docker-compose.yml to use Docker Hub image:
+```sh
+version: '3.9'
 services:
-  astro-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: my-astro-project:latest
-    container_name: my-astro-container
-    ports:
-      - "8080:80"  # Changed to 8080 to avoid conflicts with other services
-    restart: unless-stopped
-    networks:
-      - traefik-public
+  myapp:
+    image: your-dockerhub-username/myapp:latest
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.astro.rule=Host(`your-domain.com`)"
-      - "traefik.http.services.astro.loadbalancer.server.port=80"
-
+      - "traefik.http.routers.myapp.rule=Host(`myapp.local`)"
+      - "traefik.http.routers.myapp.entrypoints=web"
+      - "traefik.http.services.myapp.loadbalancer.server.port=80"
+    networks:
+      - traefik_proxy
 networks:
-  traefik-public:
+  traefik_proxy:
     external: true
+ ```
+
+3. Ensure traefik_proxy network exists
+
+## Implementation Challenges
+
+I decided to try Option 1 first. Here's what I did:
+
+1. Updated my docker-compose.yml file with Traefik labels
+2. Added network configurations
+3. Enabled Docker provider in Traefik config
+
+However, I ran into errors in my journalctl logs:
+```
+May 28 21:34:50 nixos traefik[172041]: 2025-05-28T21:34:50Z ERR github.com/traefik/traefik/v3/pkg/provider/docker/pdocker.go:157 > Provider error, retrying in 2.176440789s error="Cannot connect to the Docker daemon at unix:///var/run/docke r.sock. Is the docker daemon running?" providerName=docker
 ```
 
-## Testing and Troubleshooting
+I realized this was likely due to permission issues with Traefik accessing the Docker socket. After some research and talking with a friend, I understood that Traefik needs proper permissions to access Docker/Podman.
 
-### Local Build Test
+## The Solution
 
-First, I tested the build locally:
+I configured NixOS to add the Traefik user to the Podman group:
+
+```nix
+users.users.traefik = {
+  group = "traefik";
+  isSystemUser = true;
+  extraGroups = [ "podman" "docker" ];
+};
+```
+
+This configuration ensures Traefik has the necessary permissions to work with containers, because in other for traefik to connect with docker it need to be able to access the docker socket.
+
+## Final Deployment
+
+I verified the traefik_proxy network existed using `podman network ls`, then built the Docker compose file:
 
 ```sh
-npm run build  # Built successfully
-npm run preview  # Served at http://localhost:4321
+sudo podman compose up --build id
 ```
 
-### First Docker Build Attempt
+The deployment was successful, and I could see the service in my Traefik dashboard.
 
-I created all necessary files (`Dockerfile`, `nginx.conf`, `docker-compose.yml`, `.dockerignore`) and ran:
+## Lessons Learned
 
-```sh
-docker compose up --build -d
-```
+This deployment journey taught me several valuable lessons:
 
-**Error encountered**:
+1. **Permission Management is Critical**: Understanding how different system users (like Traefik) interact with services like Docker/Podman was crucial. The solution wasn't obvious at first, but learning about user groups and socket permissions was enlightening.
 
-```
-[+] Running 1/1
- ✔ astro-app  Built                                                          0.0s
-network traefik-public declared as external, but could not be found
-```
+2. **Configuration Order Matters**: Sometimes issues aren't with the current configuration but with the sequence of operations. Restarting after applying configuration changes is important to verify persistence.
 
-**Problem**: Docker was trying to connect to a `traefik-public` network that doesn't exist because I don't have Traefik installed on my local system.
+3. **Declarative Systems Require Declarative Thinking**: Working with NixOS's declarative configuration taught me to think more systematically about infrastructure setup.
 
-### Solution Options
+4. **Traefik Integration Needs Specific Labels**: Learning how Traefik discovers services and requires specific labels helped me understand service mesh concepts better.
 
-I had two options:
-1. Create the network: `docker network create traefik-public`
-2. Remove Traefik settings and use local network for testing
-I chose option 2 since this is my test environment before moving to the server.
-### Updated Configuration for Local Testing
+5. **Debugging is a Process**: Using tools like journalctl and understanding log messages became essential skills during this process.
 
-```yaml
-networks:
-  - local
-#   - traefik-public
-# labels:
-#   - "traefik.enable=true"
-#   - "traefik.http.routers.astro.rule=Host(`your-domain.com`)"
-#   - "traefik.http.services.astro.loadbalancer.server.port=80"
-
-networks:
-  local:
-    driver: bridge
-  # traefik-public:
-  #   external: true
-```
-
-### Successful Build
-
-Second attempt was successful:
-
-**Result**:
-
-```
- ✔ astro-app                     Built                                           0.0s
- ✔ Network personal_blog_local   Created
-```
-
-**Container Status**:
-
-```sh
-CONTAINER ID   IMAGE                     COMMAND                  CREATED              STATUS              PORTS                                                          NAMES
-67115dcdb6c1   my-astro-project:latest   "/docker-entrypoint.…"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp                        my-astro-container
-```
-
-The container is running successfully and accessible on `http://localhost:8080`.
-
-> [!Takeaways] **Key learnings from this deployment:**
->
-> - **Static vs Dynamic detection**: Check for `astro.config.mjs` and SSR adapters to determine site type
-> - **Multi-stage Docker builds**: Separate build and runtime stages for smaller final images
-> - **Network dependencies**: External networks must exist before referencing them in compose files
-> - **Local testing strategy**: Comment out production configs for local development
->
-> **What worked well:**
->
-> - Multi-stage Dockerfile approach kept the final image lightweight
-> - Using nginx:alpine as runtime base was efficient
-> - Port mapping to 8080 avoided conflicts with other local services
->
-> **What I'd do differently:**
->
-> - Set up a proper local Traefik instance for full testing
-> - Create environment-specific compose files (dev vs prod)
-> - Add health checks to the container configuration
->
-> **Next steps:**
->
-> - Deploy to server with actual Traefik setup
-> - Configure proper domain and SSL certificates
-> - Add monitoring and logging for the containerized application
-> - Explore nginx configuration optimization for static sites
-
-##### Resources
-https://deployn.de/en/blog/astrojs-docker/#the-tools-preparing-your-development-environment
-
-**West: Similar**
-
-**East: Opposite**
-
-**North: Theme / Questions**
-
-**South: What does this lead to**
+While the process was challenging and sometimes frustrating, seeing the service appear in Traefik was incredibly rewarding. This marks my first successful deployment of a personal project to a live environment - a significant milestone in my development journey.

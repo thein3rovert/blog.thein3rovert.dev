@@ -3,7 +3,7 @@ title: "How to setup Traefik on nixos"
 description: "This blog provides my personal account of setting up Traefik on NixOS, highlighting its ease of configuration, integration with Let's Encrypt for SSL/TLS, and my jjourney in learning and configuring entry points, certificate resolvers, and routing for a secure and efficient server environment."
 publishDate: "14 May 2025"
 tags: ["traefik"]
-updatedDate: 20 June 2025
+updatedDate: 20 May 2025
 ---
 #### 1. Introduction
 Traefik is an open-source reverse proxy and load balancer, perfect for managing containerized applications in your homelab or home server and cloud server. It works well with docker, automatically detecting services, configuring routing and secure connection with SSL.
