@@ -6,7 +6,7 @@ services:
     image: ${IMAGE_NAME}:latest
     container_name: ${CONTAINER_NAME}
     ports:
-      - "8080:3001"
+      - "8080:3001"  # TODO: Remember to change 3001 to 80
     restart: unless-stopped
     networks:
       - local
@@ -17,11 +17,10 @@ services:
       - "traefik.http.routers.astro-app.entrypoints=websecure"
       - "traefik.http.routers.astro-app.tls=true"
       - "traefik.http.routers.astro-app.tls.certresolver=godaddy"
-      - "traefik.http.services.astro-app.loadbalancer.server.port=80"
+      - "traefik.http.services.astro-app.loadbalancer.server.port=80" # INFO: Nginx runs on 80
 
 networks:
   traefik_proxy:
     external: true
   local:
     driver: bridge
-
