@@ -4,9 +4,22 @@
 
 set -e # Exit script on fail command  TODO: Print out a message on failed command
 
+ALLOWED_BRANCH="master" # Branch used for deplyoment ( main or master)
+
+# Get the current branch
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Check the correct branch
+ if [ "$CURRENT_BRANCH" != "$ALLOWED_BRANCH" ]; then
+   echo "You are on the branch '$CURRENT_BRANCH'. Please switch to '$ALLOWED_BRANCH' before deploying."
+   exit 1
+ fi
+
+ echo "Now on the correct branch: $CURRENT_BRANCH"
+
 echo "Deployment Starting..."
 
-git pull origin dev # TODO: Add steps to choose branch types or automatically detect if its master or main
+git pull origin "$ALLOWED_BRANCH"
 
 npm ci # Install dependencies ( Clean install )
 
@@ -27,9 +40,15 @@ echo "Building application completed successfully"
 
 echo "Stoping the running application..."
 
-# Confirm is using sudo or user
-# sudo podman compose down
+read -p "Use sudo for Docker Compose? (y/N): " USE_SUDO
+COMPOSE_CMD="podman compose"
+if [[ "$USE_SUDO" == [yY] ]]; then
+  COMPOSE_CMD="sudo $COMPOSE_CMD"
+fi
 
-# sudo podman compose up --build -d
+echo "Now using '$COMPOSE_CMD' "
 
-echo "Deployment completed successfully"
+# $COMPOSE_CMD down
+# $COMPOSE_CMD up --build -d
+
+echo "🚀 Deployment completed successfully"
