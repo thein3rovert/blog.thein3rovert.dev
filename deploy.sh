@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
-# deploy.sh - This script is using for automating my personal blog deployment which is built with astro
+# === This script is using for automating my personal blog deployment which is built with astro ===
 
-set -e # Exit script on fail command  TODO: Print out a message on failed command
+# === Exit script on fail command. TODO: Print out a message on failed command ===
+set -e
 
-ALLOWED_BRANCH="master" # Branch used for deplyoment ( main or master)
+# === Branch used for deployment (main or master) ===
+ALLOWED_BRANCH="master"
 
-# Get the current branch
+# === Get the current branch ===
+
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+# CURRENT_BRANCH=$ALLOWED_BRANCH
 
-# Check the correct branch
+# === Check if on the correct branch ===
  if [ "$CURRENT_BRANCH" != "$ALLOWED_BRANCH" ]; then
    echo "You are on the branch '$CURRENT_BRANCH'. Please switch to '$ALLOWED_BRANCH' before deploying."
    exit 1
@@ -21,20 +25,23 @@ echo "Deployment Starting..."
 
 git pull origin "$ALLOWED_BRANCH"
 
-npm ci # Install dependencies ( Clean install )
+# === Install dependencies (Clean install) ===
+npm ci
 
-# npm run test #  Run test to make sure everything is good
+# === Run test to make sure everything is good ===
+# npm run test
 
-# TODO: Check if the container is currently running
-# and if it is terminate and build again
+# === TODO: Check if container is running and terminate if needed before rebuilding ===
 
-npm run build # Build the application by running the build script in the package.json
+# === Build the application using package.json build script ===
+npm run build
 
-# Run database migration by running the migration script in the package.json ( I dont have one now so)
-# Add option to select of migration script exit and if not echo a message
+# === Run database migrations (Not implemented yet) ===
+# === Add option to select migration script exit and echo message if none ===
 # npm run migrate
 
-# pm2 restart all # Restart all application managed by Node process manager ( Not needed for static files )
+# === Restart all PM2 managed applications (Not needed for static files) ===
+# pm2 restart all
 
 echo "Building application completed successfully"
 
@@ -48,7 +55,7 @@ fi
 
 echo "Now using '$COMPOSE_CMD' "
 
-# $COMPOSE_CMD down
-# $COMPOSE_CMD up --build -d
+$COMPOSE_CMD down
+$COMPOSE_CMD up --build -d
 
 echo "🚀 Deployment completed successfully"
