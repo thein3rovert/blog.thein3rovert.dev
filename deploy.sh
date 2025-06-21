@@ -42,10 +42,7 @@ npm run build
 
 # === Restart all PM2 managed applications (Not needed for static files) ===
 # pm2 restart all
-
 echo "Building application completed successfully"
-
-echo "Stoping the running application..."
 
 read -p "Use sudo for Docker Compose? (y/N): " USE_SUDO
 COMPOSE_CMD="podman compose"
@@ -54,8 +51,10 @@ if [[ "$USE_SUDO" == [yY] ]]; then
 fi
 
 echo "Now using '$COMPOSE_CMD' "
-
+echo "Stoping the running application..."
 $COMPOSE_CMD down
+
+echo "Building and Restarting the applicationn"
 $COMPOSE_CMD up --build -d
 
 echo "🚀 Deployment completed successfully"
