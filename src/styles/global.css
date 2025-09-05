@@ -24,19 +24,22 @@
 		&[data-theme="light"] {
 			color-scheme: light;
 			--color-global-bg: oklch(0.95 0.0074 84.93);
-			--color-global-text: oklch(0.45 0.0352 264.13);
+			--color-global-text: oklch(0.2768 0 0); /*grey: 282828*/
+			--color-link: oklch(0.6217 0.1707 45.81); /*orange: d65d0e*/
+			--color-accent: oklch(0.5756 0.0658 199.49); /* Dimeblue: #83a598 or Bight Blue: #458588*/
+			--color-accent-2: oklch(0.4706 0.0816 215.81); /* Dimeblue: #83a598  */
+			--color-quote: oklch(0.7652 0.1581 110.83); /* green: b8bb26 */
 		}
 
 		&[data-theme="dark"] {
 			color-scheme: dark;
 			/* --color-global-bg: oklch(0.45 0.0352 264.13); */
-			--color-global-bg: oklch(0.3441 0.0066 48.52); /*#3c3836*/
-			--color-global-text: oklch(0.8941 0.0566 89.24); /*#ebdbb2*/
-			/* --color-global-text: oklch(83.54% 0 264); */
-			--color-link: oklch(70.44% 0.1133 349);
-			--color-accent: oklch(70.91% 0.1415 163.7);
-			--color-accent-2: oklch(94.66% 0 0);
-			--color-quote: oklch(94.8% 0.106 136.49);
+			--color-global-bg: oklch(0.2768 0 0); /*#282828*/
+			--color-global-text: oklch(0.8941 0.0566 89.24); /*light grey: #ebdbb2*/
+			--color-link: oklch(0.6217 0.1707 45.81); /*orange: d65d0e*/
+			--color-accent: oklch(0.5756 0.0658 199.49); /* Dimeblue: #83a598 or Bight Blue: #458588*/
+			--color-accent-2: oklch(0.6927 0.042 169.77); /* Dimeblue: #83a598  */
+			--color-quote: oklch(0.7652 0.1581 110.83); /* green: b8bb26 */
 		}
 	}
 
