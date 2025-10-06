@@ -30,6 +30,12 @@
               # nodejs # Make sure to have the right version used
               biome
             ];
+            shellHook = ''
+              echo "----------------------------------------------"
+              echo "👋Welcome to my Astro Blog Dev Environment!";
+              echo "Using Node version: $(node --version || echo 'not installed')"
+              echo "----------------------------------------------"
+            '';
           };
         }
       );
