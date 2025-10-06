@@ -85,7 +85,7 @@ const meta = {
 
 <PageLayout meta={meta}>
 	<!-- File listings -->
-	<div class="terminal-listing w-full">
+	<div class="terminal-listing -mx-4 w-full sm:-mx-8">
 		{
 			postsWithMetadata.map(({ post, wordCount, category, formattedDate, title }) => (
 				<div class="terminal-row px-4 font-mono text-sm sm:px-8">
@@ -131,7 +131,7 @@ const meta = {
 			1fr; /* title */
 		gap: 16px;
 		align-items: center;
-		font-family: ui-monospace, "Courier New", Courier, monospace;
+		font-family: "MonoLisa", ui-monospace, "Courier New", Courier, monospace;
 		font-size: 14px;
 		line-height: 1.5;
 		letter-spacing: 0;
