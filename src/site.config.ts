@@ -26,12 +26,12 @@ export const siteConfig: SiteConfig = {
     - In the footer found in src/components/layout/Footer.astro L:12
   */
 	title: "thein3rovert",
-	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
-	url: "https://astro-cactus.chriswilliams.dev/",
+	// Used in astro.config.ts and for generating absolute URLs
+	url: "https://blog.thein3rovert.dev/",
 };
 
-// Used to generate links in both the Header & Footer.
-export const menuLinks: { path: string; title: string }[] = [
+// Used to generate navigation links in Header & Footer components
+export const menuLinks: Array<{ path: string; title: string }> = [
 	{
 		path: "/",
 		title: "Home",
@@ -53,6 +53,14 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "Code",
 	},
 ];
+
+// Social media links for the site
+export const socialLinks = {
+	github: "https://github.com/thein3rovert",
+	linkedin: "https://www.linkedin.com/in/samad-olaibi/",
+	threads: "https://threads.net/thein3rovert",
+	website: "/",
+} as const;
 
 // https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
