@@ -52,6 +52,10 @@ export const menuLinks: Array<{ path: string; title: string }> = [
 		path: "/code/",
 		title: "Code",
 	},
+	{
+		path: "/terminal/",
+		title: "Terminal",
+	},
 ];
 
 // Social media links for the site
