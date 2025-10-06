@@ -85,10 +85,10 @@ const meta = {
 
 <PageLayout meta={meta}>
 	<!-- File listings -->
-	<div class="terminal-listing">
+	<div class="terminal-listing w-full">
 		{
 			postsWithMetadata.map(({ post, wordCount, category, formattedDate, title }) => (
-				<div class="terminal-row font-mono text-sm">
+				<div class="terminal-row px-4 font-mono text-sm sm:px-8">
 					<span class="col-permissions text-gray-400">-rw-r--r--</span>
 					<span class="col-user text-gray-400">thein3rovert</span>
 					<span class="col-size text-gray-400">{wordCount}W</span>
@@ -113,24 +113,30 @@ const meta = {
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		background-color: var(--tw-bg-opacity-dark);
 	}
 
 	.terminal-row {
 		display: grid;
 		grid-template-columns:
-			minmax(80px, auto) /* permissions */
+			minmax(100px, auto) /* permissions */
 			minmax(90px, auto) /* user */
-			minmax(50px, auto) /* size */
+			minmax(60px, auto) /* size */
 			minmax(40px, auto) /* month */
 			minmax(30px, auto) /* day */
 			minmax(50px, auto) /* year */
 			1fr; /* title */
-		gap: 8px;
-		align-items: baseline;
-		font-family: "Courier New", Courier, monospace;
+		gap: 16px;
+		align-items: center;
+		font-family: ui-monospace, "Courier New", Courier, monospace;
 		font-size: 14px;
-		line-height: 1.25;
+		line-height: 1.5;
 		letter-spacing: 0;
+		margin: 0;
+		width: 100%;
 	}
 
 	/* Responsive behavior */
@@ -166,6 +172,17 @@ const meta = {
 	}
 
 	/* Column alignment */
+	.col-permissions,
+	.col-user,
+	.col-size,
+	.col-month,
+	.col-day,
+	.col-year,
+	.col-title {
+		margin: 0;
+		padding: 0;
+	}
+
 	.col-permissions {
 		text-align: left;
 	}

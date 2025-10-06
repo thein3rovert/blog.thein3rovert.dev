@@ -48,45 +48,51 @@ if (currentPath === "/") {
 }
 ---
 
-<header class="mb-8 font-mono text-sm" id="main-header">
-	<!-- Terminal file header -->
-	<div class="mb-4 space-y-1">
-		<div class="hover:text-accent cursor-pointer">
-			<a href="/" class="hover:underline">
-				File: {filePath}
-			</a>
+<header
+	class="bg-global-bg mb-8 w-full border-b border-gray-600 font-mono text-xs"
+	id="main-header"
+>
+	<div class="mx-auto max-w-6xl px-4 py-2 sm:px-8">
+		<!-- Terminal file header -->
+		<div class="mb-2 space-y-0 leading-tight">
+			<div class="hover:text-accent cursor-pointer">
+				<a href="/" class="hover:underline">
+					File: {filePath}
+				</a>
+			</div>
+			<div class="text-gray-400">Size: {fileSize}</div>
+			<div class="text-gray-400">
+				Access: (0644/-rw-r--r--) Uid: ( 1000/thein3rovert) Gid: ( 100/ users)
+			</div>
+			<div class="text-gray-400">Modify: {currentStatDate}</div>
+			<div class="text-gray-400">Birth: {birthDate}</div>
 		</div>
-		<div class="text-gray-400">Size: {fileSize}</div>
-		<div class="text-gray-400">
-			Access: (0644/-rw-r--r--) Uid: ( 1000/thein3rovert) Gid: ( 100/ users)
-		</div>
-		<div class="text-gray-400">Modify: {currentStatDate}</div>
-		<div class="text-gray-400">Birth: {birthDate}</div>
-	</div>
 
-	<!-- Terminal navigation -->
-	<div class="mb-4 flex flex-wrap items-center gap-2">
-		<span class="text-gray-400">Pages:</span>
-		{
-			menuLinks.map((link, index) => (
-				<span>
-					<a
-						href={link.path}
-						class={`hover:underline ${
-							currentPath === link.path || (link.path !== "/" && currentPath.startsWith(link.path))
-								? "text-accent font-bold"
-								: "text-accent"
-						}`}
-						data-astro-prefetch
-					>
-						{link.title}
-					</a>
-					{index < menuLinks.length - 1 && <span class="ml-1 text-gray-400">|</span>}
-				</span>
-			))
-		}
-		<div class="ml-auto">
-			<ThemeToggle />
+		<!-- Terminal navigation -->
+		<div class="flex flex-wrap items-center gap-2">
+			<span class="text-gray-400">Pages:</span>
+			{
+				menuLinks.map((link, index) => (
+					<span>
+						<a
+							href={link.path}
+							class={`hover:underline ${
+								currentPath === link.path ||
+								(link.path !== "/" && currentPath.startsWith(link.path))
+									? "text-accent font-bold"
+									: "text-accent"
+							}`}
+							data-astro-prefetch
+						>
+							{link.title}
+						</a>
+						{index < menuLinks.length - 1 && <span class="ml-1 text-gray-400">|</span>}
+					</span>
+				))
+			}
+			<div class="ml-auto">
+				<ThemeToggle />
+			</div>
 		</div>
 	</div>
 </header>
@@ -104,5 +110,22 @@ if (currentPath === "/") {
 
 	a:hover {
 		text-decoration: underline;
+	}
+
+	/* Terminal header styling - full width at top */
+	header {
+		backdrop-filter: blur(8px);
+		border-bottom: 2px solid #4a5568;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	/* Dark mode adjustments */
+	:global(.dark) header {
+		border-bottom-color: #718096;
+		background: rgba(0, 0, 0, 0.8);
+	}
+
+	:global(.light) header {
+		background: rgba(255, 255, 255, 0.9);
 	}
 </style>
