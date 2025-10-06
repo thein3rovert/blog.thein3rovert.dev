@@ -77,25 +77,6 @@ const postsWithMetadata = await Promise.all(
 	}),
 );
 
-// Calculate total words across all posts
-const totalWords = postsWithMetadata.reduce((total, postMeta) => total + postMeta.wordCount, 0);
-
-const currentDate = new Date();
-
-// Function to format date in stat format (YYYY-MM-DD HH:MM:SS -0600)
-function formatStatDate(date: Date): string {
-	const year = date.getFullYear();
-	const month = (date.getMonth() + 1).toString().padStart(2, "0");
-	const day = date.getDate().toString().padStart(2, "0");
-	const hours = date.getHours().toString().padStart(2, "0");
-	const minutes = date.getMinutes().toString().padStart(2, "0");
-	const seconds = date.getSeconds().toString().padStart(2, "0");
-	return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} -0600`;
-}
-
-const currentStatDate = formatStatDate(currentDate);
-const birthDate = formatStatDate(new Date(Date.now() - 24 * 60 * 60 * 1000)); // 1 day ago for birth
-
 const meta = {
 	title: "Terminal",
 	description: "Terminal-style file listing of blog posts",
@@ -103,21 +84,6 @@ const meta = {
 ---
 
 <PageLayout meta={meta}>
-	<div class="space-y-1 font-mono text-sm">
-		<!-- File header info -->
-		<div class="mb-6 space-y-1">
-			<div class="hover:text-accent cursor-pointer">
-				<a href="/" class="hover:underline">File: /home/thein3rovert/posts</a>
-			</div>
-			<div class="text-gray-400">Size: {totalWords} words</div>
-			<div class="text-gray-400">
-				Access: (0644/-rw-r--r--) Uid: ( 1000/thein3rovert) Gid: ( 100/ users)
-			</div>
-			<div class="text-gray-400">Modify: {currentStatDate}</div>
-			<div class="text-gray-400">Birth: {birthDate}</div>
-		</div>
-	</div>
-
 	<!-- File listings -->
 	<div class="terminal-listing">
 		{
