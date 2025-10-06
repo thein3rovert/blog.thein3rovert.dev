@@ -6,14 +6,87 @@ interface Props {
 }
 
 const {
-	content: { data },
+	content: { data, body },
 } = Astro.props;
 
+// Function to estimate word count from markdown content
+function getWordCount(content: string): number {
+	const cleanContent = content
+		.replace(/---[\s\S]*?---/, "") // Remove frontmatter
+		.replace(/```[\s\S]*?```/g, "") // Remove code blocks
+		.replace(/`[^`]*`/g, "") // Remove inline code
+		.replace(/[#*_\[\]()]/g, "") // Remove markdown syntax
+		.replace(/!\[.*?\]\(.*?\)/g, "") // Remove images
+		.replace(/\[.*?\]\(.*?\)/g, "") // Remove links
+		.replace(/\s+/g, " ") // Normalize whitespace
+		.trim();
+
+	return cleanContent.split(" ").filter((word) => word.length > 0).length;
+}
+
+// Function to format date in stat format (YYYY-MM-DD HH:MM:SS -0600)
+function formatStatDate(date: Date): string {
+	const year = date.getFullYear();
+	const month = (date.getMonth() + 1).toString().padStart(2, "0");
+	const day = date.getDate().toString().padStart(2, "0");
+	const hours = date.getHours().toString().padStart(2, "0");
+	const minutes = date.getMinutes().toString().padStart(2, "0");
+	const seconds = date.getSeconds().toString().padStart(2, "0");
+	return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} -0600`;
+}
+
+// Function to generate terminal-friendly short names
+function getShortName(title: string): string {
+	const shortNames: Record<string, string> = {
+		"Example OG Social Image": "social-image",
+		"Example Cover Image": "cover-image",
+		"Adding Webmentions to Astro Cactus": "webmentions-setup",
+		"How to setup ddutils on Nixos": "ddutils-setup",
+		"Resolving No Space Left on Device Error on NixOS": "nixos-disk-fix",
+		"Changing your Oh-my-posh themes in Nix-OS": "posh-themes",
+		"Creating my first nix package": "first-nix-pkg",
+		"How to setup Traefik on nixos": "traefik-setup",
+		"Freshrss installation on nixos rant": "freshrss-install",
+		"Deploying my personal blog using Docker and Traefik": "blog-docker-deploy",
+		"Automating My Blog Deployment: A Journey from Manual to Bash": "deploy-automation",
+	};
+
+	return (
+		shortNames[title] ||
+		title
+			.toLowerCase()
+			.replace(/[^a-z0-9\s]/g, "")
+			.replace(/\s+/g, "-")
+			.substring(0, 20)
+	);
+}
+
+const wordCount = getWordCount(body || "");
+const category = data.tags?.[0] || "blog";
+const shortTitle = getShortName(data.title);
 const publishDate = new Date(data.publishDate);
 const updatedDate = data.updatedDate ? new Date(data.updatedDate) : publishDate;
+
+const modifyDate = formatStatDate(updatedDate);
+const birthDate = formatStatDate(publishDate);
 ---
 
 <div class="mb-8 font-mono text-sm">
+	<!-- Terminal file header -->
+	<div class="mb-6 space-y-1">
+		<div class="hover:text-accent cursor-pointer">
+			<a href="/terminal" class="hover:underline">
+				File: /home/thein3rovert/posts/{category}/{shortTitle}
+			</a>
+		</div>
+		<div class="text-gray-400">Size: {wordCount} words</div>
+		<div class="text-gray-400">
+			Access: (0644/-rw-r--r--) Uid: ( 1000/thein3rovert) Gid: ( 100/ users)
+		</div>
+		<div class="text-gray-400">Modify: {modifyDate}</div>
+		<div class="text-gray-400">Birth: {birthDate}</div>
+	</div>
+
 	<!-- Blog post title and metadata (terminal style) -->
 	<div class="mb-6 space-y-2">
 		{data.draft && <span class="text-red-500">(Draft)</span>}
@@ -61,7 +134,7 @@ const updatedDate = data.updatedDate ? new Date(data.updatedDate) : publishDate;
 
 <style>
 	.font-mono {
-		font-family: "MonoLisa", ui-monospace, "Courier New", Courier, monospace;
+		font-family: "Courier New", Courier, monospace;
 		letter-spacing: 0;
 	}
 

@@ -38,7 +38,7 @@ async function getPostWordCount(post: CollectionEntry<"post">): Promise<number> 
 	}
 }
 
-// Function to format date in ls format (MMM DD YYYY)
+// Function to format date in compact ls format (MMM DD YYYY)
 function formatLsDate(date: Date): string {
 	const months = [
 		"Jan",
@@ -55,24 +55,50 @@ function formatLsDate(date: Date): string {
 		"Dec",
 	];
 	const month = months[date.getMonth()];
-	const day = date.getDate().toString().padStart(2, " ");
+	const day = date.getDate().toString().padStart(2, "0");
 	const year = date.getFullYear();
 	return `${month} ${day} ${year}`;
+}
+
+// Function to generate terminal-friendly short names
+function getShortName(title: string): string {
+	const shortNames: Record<string, string> = {
+		"Example OG Social Image": "social-image",
+		"Example Cover Image": "cover-image",
+		"Adding Webmentions to Astro Cactus": "webmentions-setup",
+		"How to setup ddutils on Nixos": "ddutils-setup",
+		"Resolving No Space Left on Device Error on NixOS": "nixos-disk-fix",
+		"Changing your Oh-my-posh themes in Nix-OS": "posh-themes",
+		"Creating my first nix package": "first-nix-pkg",
+		"How to setup Traefik on nixos": "traefik-setup",
+		"Freshrss installation on nixos rant": "freshrss-install",
+		"Deploying my personal blog using Docker and Traefik": "blog-docker-deploy",
+		"Automating My Blog Deployment: A Journey from Manual to Bash": "deploy-automation",
+	};
+
+	return (
+		shortNames[title] ||
+		title
+			.toLowerCase()
+			.replace(/[^a-z0-9\s]/g, "")
+			.replace(/\s+/g, "-")
+			.substring(0, 20)
+	);
 }
 
 // Calculate actual word counts and prepare post metadata
 const postsWithMetadata = await Promise.all(
 	sortedPosts.map(async (post) => {
 		const wordCount = await getPostWordCount(post);
-		const category = post.data.tags?.[0] || "blog"; // Use first tag as category
 		const formattedDate = formatLsDate(new Date(post.data.publishDate));
+		const shortTitle = getShortName(post.data.title);
 
 		return {
 			post,
 			wordCount,
-			category,
 			formattedDate,
 			title: post.data.title,
+			shortTitle,
 		};
 	}),
 );
@@ -87,18 +113,17 @@ const meta = {
 	<!-- File listings -->
 	<div class="terminal-listing -mx-4 w-full sm:-mx-8">
 		{
-			postsWithMetadata.map(({ post, wordCount, category, formattedDate, title }) => (
-				<div class="terminal-row px-4 font-mono text-sm sm:px-8">
+			postsWithMetadata.map(({ post, wordCount, formattedDate, title, shortTitle }) => (
+				<div class="terminal-row font-mono text-sm">
 					<span class="col-permissions text-gray-400">-rw-r--r--</span>
 					<span class="col-user text-gray-400">thein3rovert</span>
 					<span class="col-size text-gray-400">{wordCount}W</span>
 					<span class="col-month text-gray-400">{formattedDate.split(" ")[0]}</span>
 					<span class="col-day text-gray-400">{formattedDate.split(" ")[1]}</span>
 					<span class="col-year text-gray-400">{formattedDate.split(" ")[2]}</span>
-					<span class="col-title">
-						<span class="text-gray-400">{category}</span>{" "}
-						<a href={`/posts/${post.id}`} class="text-accent hover:underline">
-							{title}
+					<span class="col-title" data-date={formattedDate}>
+						<a href={`/posts/${post.id}`} class="text-accent hover:underline" title={title}>
+							{shortTitle}
 						</a>
 					</span>
 				</div>
@@ -139,34 +164,104 @@ const meta = {
 		width: 100%;
 	}
 
-	/* Responsive behavior */
-	@media (max-width: 768px) {
+	/* Progressive responsive behavior */
+	/* Mobile: Only date and title */
+	@media (max-width: 640px) {
 		.terminal-row {
 			grid-template-columns:
-				minmax(80px, auto) /* permissions */
-				minmax(70px, auto) /* user */
-				minmax(40px, auto) /* size */
-				1fr; /* title only */
+				minmax(80px, auto) /* compact date */
+				1fr; /* title */
 		}
 
-		/* Hide month, day, year on small screens */
+		/* Hide permissions, user, size, individual date parts on mobile */
+		.col-permissions,
+		.col-user,
+		.col-size,
 		.col-month,
 		.col-day,
 		.col-year {
 			display: none;
 		}
+
+		/* Show compact date on mobile */
+		.col-title::before {
+			content: attr(data-date) " ";
+			color: #9ca3af;
+		}
 	}
 
-	@media (max-width: 480px) {
+	/* Small tablet: Add size */
+	@media (min-width: 641px) and (max-width: 768px) {
+		.terminal-row {
+			grid-template-columns:
+				minmax(50px, auto) /* size */
+				minmax(80px, auto) /* compact date */
+				1fr; /* title */
+		}
+
+		/* Hide permissions and user, individual date parts */
+		.col-permissions,
+		.col-user,
+		.col-month,
+		.col-day,
+		.col-year {
+			display: none;
+		}
+
+		/* Show compact date */
+		.col-title::before {
+			content: attr(data-date) " ";
+			color: #9ca3af;
+		}
+	}
+
+	/* Medium tablet: Add user */
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.terminal-row {
+			grid-template-columns:
+				minmax(90px, auto) /* user */
+				minmax(50px, auto) /* size */
+				minmax(30px, auto) /* month */
+				minmax(20px, auto) /* day */
+				minmax(40px, auto) /* year */
+				1fr; /* title */
+		}
+
+		/* Hide only permissions, remove mobile date prefix */
+		.col-permissions {
+			display: none;
+		}
+
+		.col-title::before {
+			display: none;
+		}
+	}
+
+	/* Large screens: Show all columns */
+	@media (min-width: 1025px) {
 		.terminal-row {
 			grid-template-columns:
 				minmax(80px, auto) /* permissions */
-				minmax(40px, auto) /* size */
-				1fr; /* title only */
+				minmax(90px, auto) /* user */
+				minmax(50px, auto) /* size */
+				minmax(30px, auto) /* month */
+				minmax(20px, auto) /* day */
+				minmax(40px, auto) /* year */
+				1fr; /* title */
 		}
 
-		/* Hide user column on very small screens */
-		.col-user {
+		/* Show all columns, remove mobile date prefix */
+		.col-permissions,
+		.col-user,
+		.col-size,
+		.col-month,
+		.col-day,
+		.col-year,
+		.col-title {
+			display: block;
+		}
+
+		.col-title::before {
 			display: none;
 		}
 	}
