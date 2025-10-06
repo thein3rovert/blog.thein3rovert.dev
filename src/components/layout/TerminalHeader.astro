@@ -1,0 +1,203 @@
+---
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import { menuLinks, siteConfig } from "@/site.config";
+
+const url = new URL(Astro.request.url);
+const currentPath = url.pathname;
+
+// Function to format date in stat format (YYYY-MM-DD HH:MM:SS -0600)
+function formatStatDate(date: Date): string {
+	const year = date.getFullYear();
+	const month = (date.getMonth() + 1).toString().padStart(2, "0");
+	const day = date.getDate().toString().padStart(2, "0");
+	const hours = date.getHours().toString().padStart(2, "0");
+	const minutes = date.getMinutes().toString().padStart(2, "0");
+	const seconds = date.getSeconds().toString().padStart(2, "0");
+	return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} -0600`;
+}
+
+const currentDate = new Date();
+const currentStatDate = formatStatDate(currentDate);
+const birthDate = formatStatDate(new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)); // 30 days ago
+
+// Determine current file path based on route
+let filePath = "/home/thein3rovert";
+let fileSize = "16488 words";
+
+if (currentPath === "/") {
+	filePath = "/home/thein3rovert";
+	fileSize = "16488 words";
+} else if (currentPath.startsWith("/posts/")) {
+	filePath = "/home/thein3rovert/posts";
+	fileSize = "12000 words";
+} else if (currentPath.startsWith("/about")) {
+	filePath = "/home/thein3rovert/about";
+	fileSize = "800 words";
+} else if (currentPath.startsWith("/notes")) {
+	filePath = "/home/thein3rovert/notes";
+	fileSize = "3500 words";
+} else if (currentPath.startsWith("/code")) {
+	filePath = "/home/thein3rovert/code";
+	fileSize = "2000 words";
+} else if (currentPath.startsWith("/terminal")) {
+	filePath = "/home/thein3rovert/posts";
+	fileSize = "12000 words";
+} else {
+	filePath = "/home/thein3rovert/posts";
+	fileSize = "16488 words";
+}
+---
+
+<header class="mb-8 font-mono text-sm" id="main-header">
+	<!-- Terminal file header -->
+	<div class="mb-4 space-y-1">
+		<div class="hover:text-accent cursor-pointer">
+			<a href="/" class="hover:underline">
+				File: {filePath}
+			</a>
+		</div>
+		<div class="text-gray-400">Size: {fileSize}</div>
+		<div class="text-gray-400">
+			Access: (0644/-rw-r--r--) Uid: ( 1000/thein3rovert) Gid: ( 100/ users)
+		</div>
+		<div class="text-gray-400">Modify: {currentStatDate}</div>
+		<div class="text-gray-400">Birth: {birthDate}</div>
+	</div>
+
+	<!-- Terminal navigation -->
+	<div class="mb-4 flex flex-wrap items-center gap-2">
+		<span class="text-gray-400">Pages:</span>
+		{
+			menuLinks.map((link, index) => (
+				<span>
+					<a
+						href={link.path}
+						class={`hover:underline ${
+							currentPath === link.path || (link.path !== "/" && currentPath.startsWith(link.path))
+								? "text-accent font-bold"
+								: "text-accent"
+						}`}
+						data-astro-prefetch
+					>
+						{link.title}
+					</a>
+					{index < menuLinks.length - 1 && <span class="ml-1 text-gray-400">|</span>}
+				</span>
+			))
+		}
+		<div class="ml-auto">
+			<ThemeToggle />
+		</div>
+	</div>
+
+	<!-- Mobile menu toggle (hidden by default, shows on small screens) -->
+	<mobile-button class="sm:hidden">
+		<button
+			aria-expanded="false"
+			aria-haspopup="menu"
+			class="group relative mb-4 h-7 w-7"
+			id="toggle-navigation-menu"
+			type="button"
+		>
+			<span class="sr-only">Open main menu</span>
+			<svg
+				aria-hidden="true"
+				class="absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transition-all group-aria-expanded:scale-0 group-aria-expanded:opacity-0"
+				fill="none"
+				focusable="false"
+				stroke="currentColor"
+				stroke-width="1.5"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path d="M3.75 9h16.5m-16.5 6.75h16.5" stroke-linecap="round" stroke-linejoin="round"
+				></path>
+			</svg>
+			<svg
+				aria-hidden="true"
+				class="text-accent absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition-all group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
+				fill="none"
+				focusable="false"
+				stroke="currentColor"
+				stroke-width="1.5"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+			</svg>
+		</button>
+
+		<!-- Mobile menu dropdown -->
+		<nav
+			aria-label="Main menu"
+			class="bg-global-bg/95 text-accent absolute top-full right-0 left-0 z-50 hidden flex-col gap-y-2 rounded-md border border-gray-600 p-4 shadow-lg backdrop-blur-sm group-[.menu-open]:flex"
+			id="mobile-navigation-menu"
+		>
+			{
+				menuLinks.map((link) => (
+					<a
+						href={link.path}
+						class={`block px-2 py-1 hover:underline ${
+							currentPath === link.path || (link.path !== "/" && currentPath.startsWith(link.path))
+								? "font-bold"
+								: ""
+						}`}
+						data-astro-prefetch
+					>
+						{link.title}
+					</a>
+				))
+			}
+		</nav>
+	</mobile-button>
+</header>
+
+<style>
+	.font-mono {
+		font-family: "Courier New", Courier, monospace;
+		letter-spacing: 0;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	/* Responsive navigation */
+	@media (max-width: 640px) {
+		.mb-4.flex.flex-wrap {
+			display: none;
+		}
+	}
+
+	@media (min-width: 641px) {
+		mobile-button {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	import { toggleClass } from "@/utils/domElement";
+
+	class MobileNavBtn extends HTMLElement {
+		#menuOpen: boolean = false;
+
+		connectedCallback() {
+			const headerEl = document.getElementById("main-header")!;
+			const mobileButtonEl = this.querySelector<HTMLButtonElement>("button");
+
+			mobileButtonEl?.addEventListener("click", () => {
+				if (headerEl) toggleClass(headerEl, "menu-open");
+				this.#menuOpen = !this.#menuOpen;
+				mobileButtonEl.setAttribute("aria-expanded", this.#menuOpen.toString());
+			});
+		}
+	}
+
+	customElements.define("mobile-button", MobileNavBtn);
+</script>

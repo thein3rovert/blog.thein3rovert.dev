@@ -3,7 +3,7 @@ import BaseHead from "@/components/BaseHead.astro";
 import SkipLink from "@/components/SkipLink.astro";
 import ThemeProvider from "@/components/ThemeProvider.astro";
 import Footer from "@/components/layout/Footer.astro";
-import Header from "@/components/layout/Header.astro";
+import TerminalHeader from "@/components/layout/TerminalHeader.astro";
 import type { SiteMeta } from "@/data/siteMeta";
 import { siteConfig } from "@/site.config";
 
@@ -25,7 +25,7 @@ const {
 	>
 		<ThemeProvider />
 		<SkipLink />
-		<Header />
+		<TerminalHeader />
 		<main id="main" class="flex-1">
 			<slot />
 		</main>
