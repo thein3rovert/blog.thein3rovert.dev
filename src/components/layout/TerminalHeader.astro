@@ -89,67 +89,6 @@ if (currentPath === "/") {
 			<ThemeToggle />
 		</div>
 	</div>
-
-	<!-- Mobile menu toggle (hidden by default, shows on small screens) -->
-	<mobile-button class="sm:hidden">
-		<button
-			aria-expanded="false"
-			aria-haspopup="menu"
-			class="group relative mb-4 h-7 w-7"
-			id="toggle-navigation-menu"
-			type="button"
-		>
-			<span class="sr-only">Open main menu</span>
-			<svg
-				aria-hidden="true"
-				class="absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transition-all group-aria-expanded:scale-0 group-aria-expanded:opacity-0"
-				fill="none"
-				focusable="false"
-				stroke="currentColor"
-				stroke-width="1.5"
-				viewBox="0 0 24 24"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path d="M3.75 9h16.5m-16.5 6.75h16.5" stroke-linecap="round" stroke-linejoin="round"
-				></path>
-			</svg>
-			<svg
-				aria-hidden="true"
-				class="text-accent absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition-all group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
-				fill="none"
-				focusable="false"
-				stroke="currentColor"
-				stroke-width="1.5"
-				viewBox="0 0 24 24"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
-			</svg>
-		</button>
-
-		<!-- Mobile menu dropdown -->
-		<nav
-			aria-label="Main menu"
-			class="bg-global-bg/95 text-accent absolute top-full right-0 left-0 z-50 hidden flex-col gap-y-2 rounded-md border border-gray-600 p-4 shadow-lg backdrop-blur-sm group-[.menu-open]:flex"
-			id="mobile-navigation-menu"
-		>
-			{
-				menuLinks.map((link) => (
-					<a
-						href={link.path}
-						class={`block px-2 py-1 hover:underline ${
-							currentPath === link.path || (link.path !== "/" && currentPath.startsWith(link.path))
-								? "font-bold"
-								: ""
-						}`}
-						data-astro-prefetch
-					>
-						{link.title}
-					</a>
-				))
-			}
-		</nav>
-	</mobile-button>
 </header>
 
 <style>
@@ -166,38 +105,4 @@ if (currentPath === "/") {
 	a:hover {
 		text-decoration: underline;
 	}
-
-	/* Responsive navigation */
-	@media (max-width: 640px) {
-		.mb-4.flex.flex-wrap {
-			display: none;
-		}
-	}
-
-	@media (min-width: 641px) {
-		mobile-button {
-			display: none;
-		}
-	}
 </style>
-
-<script>
-	import { toggleClass } from "@/utils/domElement";
-
-	class MobileNavBtn extends HTMLElement {
-		#menuOpen: boolean = false;
-
-		connectedCallback() {
-			const headerEl = document.getElementById("main-header")!;
-			const mobileButtonEl = this.querySelector<HTMLButtonElement>("button");
-
-			mobileButtonEl?.addEventListener("click", () => {
-				if (headerEl) toggleClass(headerEl, "menu-open");
-				this.#menuOpen = !this.#menuOpen;
-				mobileButtonEl.setAttribute("aria-expanded", this.#menuOpen.toString());
-			});
-		}
-	}
-
-	customElements.define("mobile-button", MobileNavBtn);
-</script>
