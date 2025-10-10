@@ -6,13 +6,16 @@ import Footer from "@/components/layout/Footer.astro";
 import TerminalHeader from "@/components/layout/TerminalHeader.astro";
 import type { SiteMeta } from "@/data/siteMeta";
 import { siteConfig } from "@/site.config";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
 	meta: SiteMeta;
+	content?: CollectionEntry<"post">;
 }
 
 const {
 	meta: { articleDate, description = siteConfig.description, ogImage, title },
+	content,
 } = Astro.props;
 ---
 
@@ -25,7 +28,7 @@ const {
 	>
 		<ThemeProvider />
 		<SkipLink />
-		<TerminalHeader />
+		<TerminalHeader content={content} />
 		<main id="main" class="mx-auto w-full max-w-6xl flex-1 px-4 sm:px-8">
 			<slot />
 		</main>
