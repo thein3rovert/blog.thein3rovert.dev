@@ -1,6 +1,3 @@
-import type { CollectionEntry } from "astro:content";
-import { siteConfig } from "@/site.config";
-
 export function getWordCount(content: string): number {
 	const cleanContent = content
 		.replace(/---[\s\S]*?---/, "") // Remove frontmatter
@@ -14,7 +11,43 @@ export function getWordCount(content: string): number {
 
 	return cleanContent.split(" ").filter((word) => word.length > 0).length;
 }
+// Function to format date in compact ls format (MMM DD YYYY)
+export function formatLsDate(date: Date): string {
+	const months = [
+		"Jan",
+		"Feb",
+		"Mar",
+		"Apr",
+		"May",
+		"Jun",
+		"Jul",
+		"Aug",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dec",
+	];
+	const month = months[date.getMonth()];
+	const day = date.getDate().toString().padStart(2, "0");
+	const year = date.getFullYear();
+	return `${month} ${day} ${year}`;
+}
 
+// Function to estimate word count from markdown content
+export function getMarkdownWordCount(content: string): number {
+	// Remove frontmatter, code blocks, and markdown syntax for rough word count
+	const cleanContent = content
+		.replace(/---[\s\S]*?---/, "") // Remove frontmatter
+		.replace(/```[\s\S]*?```/g, "") // Remove code blocks
+		.replace(/`[^`]*`/g, "") // Remove inline code
+		.replace(/[#*_\[\]()]/g, "") // Remove markdown syntax
+		.replace(/!\[.*?\]\(.*?\)/g, "") // Remove images
+		.replace(/\[.*?\]\(.*?\)/g, "") // Remove links
+		.replace(/\s+/g, " ") // Normalize whitespace
+		.trim();
+
+	return cleanContent.split(" ").filter((word) => word.length > 0).length;
+}
 // Function to format date in stat format (YYYY-MM-DD HH:MM:SS -0600)
 export function formatStatDate(date: Date): string {
 	const year = date.getFullYear();

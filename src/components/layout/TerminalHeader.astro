@@ -17,32 +17,6 @@ const { content } = Astro.props;
 const data = content?.data;
 const body = content?.body;
 
-// Function to generate terminal-friendly short names
-function getShortName(title: string): string {
-	const shortNames: Record<string, string> = {
-		"Example OG Social Image": "social-image",
-		"Example Cover Image": "cover-image",
-		"Adding Webmentions to Astro Cactus": "webmentions-setup",
-		"How to setup ddutils on Nixos": "ddutils-setup",
-		"Resolving No Space Left on Device Error on NixOS": "nixos-disk-fix",
-		"Changing your Oh-my-posh themes in Nix-OS": "posh-themes",
-		"Creating my first nix package": "first-nix-pkg",
-		"How to setup Traefik on nixos": "traefik-setup",
-		"Freshrss installation on nixos rant": "freshrss-install",
-		"Deploying my personal blog using Docker and Traefik": "blog-docker-deploy",
-		"Automating My Blog Deployment: A Journey from Manual to Bash": "deploy-automation",
-	};
-
-	return (
-		shortNames[title] ||
-		title
-			.toLowerCase()
-			.replace(/[^a-z0-9\s]/g, "")
-			.replace(/\s+/g, "-")
-			.substring(0, 20)
-	);
-}
-
 // Dynamic content for blog posts vs static content for other pages
 let filePath: string;
 let fileSize: string;
@@ -53,11 +27,10 @@ if (content && data) {
 	// Blog post - show dynamic information
 	const wordCount = body ? getWordCount(body) : 0;
 	const category = data.tags?.[0] || "blog";
-	const shortTitle = getShortName(data.title);
 	const publishDate = new Date(data.publishDate);
 	const updatedDate = data.updatedDate ? new Date(data.updatedDate) : publishDate;
 
-	filePath = `/home/thein3rovert/posts/${category}/${shortTitle}`;
+	filePath = `/home/thein3rovert/posts/${category}/${data.title}`;
 	fileSize = `${wordCount} words`;
 	modifyDate = formatStatDate(updatedDate);
 	birthDate = formatStatDate(publishDate);
@@ -100,12 +73,14 @@ if (content && data) {
 		<!-- Terminal file header -->
 		<div class="mb-2 space-y-0 leading-tight">
 			<div class="hover:text-accent cursor-pointer">
-				<a href="/" class="hover:underline">
+				<a href="/" class="font-bold hover:underline">
 					File: {filePath}
 				</a>
 			</div>
 			<div>Size: {fileSize}</div>
-			<div>Access: (0644/-rw-r--r--) Uid: ( 1000/thein3rovert) Gid: ( 100 / users)</div>
+			<div class="hidden sm:block">
+				Access: (0644/-rw-r--r--) Uid: ( 1000/thein3rovert) Gid: ( 100 / users)
+			</div>
 			<div>Modify: {modifyDate}</div>
 			<div>Birth: {birthDate}</div>
 		</div>

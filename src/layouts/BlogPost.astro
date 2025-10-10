@@ -1,8 +1,7 @@
 ---
-import { type CollectionEntry, render } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 
 import Masthead from "@/components/blog/Masthead.astro";
-import TOC from "@/components/blog/TOC.astro";
 import WebMentions from "@/components/blog/webmentions/index.astro";
 
 import BaseLayout from "./Base.astro";
@@ -19,7 +18,6 @@ const {
 
 const socialImage = ogImage ?? `/og-image/${post.id}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
-const { headings } = await render(post);
 // const readingTime: string = remarkPluginFrontmatter.readingTime;
 ---
 
@@ -34,7 +32,6 @@ const { headings } = await render(post);
 	<article class="grow break-words" data-pagefind-body>
 		<div id="blog-hero" class="mb-12"><Masthead content={post} /></div>
 		<div class="flex flex-col gap-10 lg:flex-row lg:items-start">
-			{!!headings.length && <TOC headings={headings} />}
 			<div
 				class="prose prose-sm prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-gray-600 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
 			>

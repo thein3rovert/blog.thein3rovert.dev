@@ -3,25 +3,10 @@ import { type CollectionEntry } from "astro:content";
 import PageLayout from "@/layouts/Base.astro";
 import { getAllPosts } from "@/data/post";
 import { collectionDateSort } from "@/utils/date";
+import { getMarkdownWordCount, formatLsDate } from "@/utils/terminal";
 
 const allPosts = await getAllPosts();
 const sortedPosts = allPosts.sort(collectionDateSort).reverse(); // Most recent first
-
-// Function to estimate word count from markdown content
-function getWordCount(content: string): number {
-	// Remove frontmatter, code blocks, and markdown syntax for rough word count
-	const cleanContent = content
-		.replace(/---[\s\S]*?---/, "") // Remove frontmatter
-		.replace(/```[\s\S]*?```/g, "") // Remove code blocks
-		.replace(/`[^`]*`/g, "") // Remove inline code
-		.replace(/[#*_\[\]()]/g, "") // Remove markdown syntax
-		.replace(/!\[.*?\]\(.*?\)/g, "") // Remove images
-		.replace(/\[.*?\]\(.*?\)/g, "") // Remove links
-		.replace(/\s+/g, " ") // Normalize whitespace
-		.trim();
-
-	return cleanContent.split(" ").filter((word) => word.length > 0).length;
-}
 
 // Function to read post content and calculate word count
 async function getPostWordCount(post: CollectionEntry<"post">): Promise<number> {
@@ -31,59 +16,11 @@ async function getPostWordCount(post: CollectionEntry<"post">): Promise<number> 
 		if (!content) {
 			return Math.floor(Math.random() * 800) + 200; // Fallback for empty content
 		}
-		return getWordCount(content);
+		return getMarkdownWordCount(content);
 	} catch (error) {
 		console.warn(`Could not read content for post ${post.id}:`, error);
 		return Math.floor(Math.random() * 800) + 200; // Fallback
 	}
-}
-
-// Function to format date in compact ls format (MMM DD YYYY)
-function formatLsDate(date: Date): string {
-	const months = [
-		"Jan",
-		"Feb",
-		"Mar",
-		"Apr",
-		"May",
-		"Jun",
-		"Jul",
-		"Aug",
-		"Sep",
-		"Oct",
-		"Nov",
-		"Dec",
-	];
-	const month = months[date.getMonth()];
-	const day = date.getDate().toString().padStart(2, "0");
-	const year = date.getFullYear();
-	return `${month} ${day} ${year}`;
-}
-
-// Function to generate terminal-friendly short names
-function getShortName(title: string): string {
-	const shortNames: Record<string, string> = {
-		"Example OG Social Image": "social-image",
-		"Example Cover Image": "cover-image",
-		"Adding Webmentions to Astro Cactus": "webmentions-setup",
-		"How to setup ddutils on Nixos": "ddutils-setup",
-		"Resolving No Space Left on Device Error on NixOS": "nixos-disk-fix",
-		"Changing your Oh-my-posh themes in Nix-OS": "posh-themes",
-		"Creating my first nix package": "first-nix-pkg",
-		"How to setup Traefik on nixos": "traefik-setup",
-		"Freshrss installation on nixos rant": "freshrss-install",
-		"Deploying my personal blog using Docker and Traefik": "blog-docker-deploy",
-		"Automating My Blog Deployment: A Journey from Manual to Bash": "deploy-automation",
-	};
-
-	return (
-		shortNames[title] ||
-		title
-			.toLowerCase()
-			.replace(/[^a-z0-9\s]/g, "")
-			.replace(/\s+/g, "-")
-			.substring(0, 20)
-	);
 }
 
 // Calculate actual word counts and prepare post metadata
@@ -91,14 +28,12 @@ const postsWithMetadata = await Promise.all(
 	sortedPosts.map(async (post) => {
 		const wordCount = await getPostWordCount(post);
 		const formattedDate = formatLsDate(new Date(post.data.publishDate));
-		const shortTitle = getShortName(post.data.title);
 
 		return {
 			post,
 			wordCount,
 			formattedDate,
 			title: post.data.title,
-			shortTitle,
 		};
 	}),
 );
@@ -113,7 +48,7 @@ const meta = {
 	<!-- File listings -->
 	<div class="terminal-listing -mx-4 w-full sm:-mx-8">
 		{
-			postsWithMetadata.map(({ post, wordCount, formattedDate, title, shortTitle }) => (
+			postsWithMetadata.map(({ post, wordCount, formattedDate, title }) => (
 				<div class="terminal-row font-mono text-sm">
 					<span class="col-permissions text-gray-400">-rw-r--r--</span>
 					<span class="col-user text-gray-400">thein3rovert</span>
@@ -123,7 +58,7 @@ const meta = {
 					<span class="col-year text-gray-400">{formattedDate.split(" ")[2]}</span>
 					<span class="col-title" data-date={formattedDate}>
 						<a href={`/posts/${post.id}`} class="text-accent hover:underline" title={title}>
-							{shortTitle}
+							{title}
 						</a>
 					</span>
 				</div>
@@ -171,6 +106,7 @@ const meta = {
 			grid-template-columns:
 				minmax(80px, auto) /* compact date */
 				1fr; /* title */
+			font-size: 12px; /* Smaller font on mobile */
 		}
 
 		/* Hide permissions, user, size, individual date parts on mobile */
@@ -187,6 +123,19 @@ const meta = {
 		.col-title::before {
 			content: attr(data-date) " ";
 			color: #9ca3af;
+			font-size: 11px; /* Even smaller date prefix on mobile */
+		}
+	}
+
+	/* Extra small screens */
+	@media (max-width: 480px) {
+		.terminal-row {
+			font-size: 11px; /* Even smaller font */
+			gap: 8px; /* Reduced gap */
+		}
+
+		.col-title::before {
+			font-size: 10px; /* Tiny date prefix */
 		}
 	}
 
@@ -197,6 +146,7 @@ const meta = {
 				minmax(50px, auto) /* size */
 				minmax(80px, auto) /* compact date */
 				1fr; /* title */
+			font-size: 13px; /* Slightly smaller font */
 		}
 
 		/* Hide permissions and user, individual date parts */
@@ -225,6 +175,7 @@ const meta = {
 				minmax(20px, auto) /* day */
 				minmax(40px, auto) /* year */
 				1fr; /* title */
+			font-size: 13px; /* Slightly smaller font */
 		}
 
 		/* Hide only permissions, remove mobile date prefix */
@@ -298,8 +249,10 @@ const meta = {
 
 	.col-title {
 		text-align: left;
-		word-wrap: break-word;
-		overflow-wrap: break-word;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		min-width: 0;
 	}
 
 	/* Terminal-like styling */
