@@ -1,5 +1,5 @@
 ---
-title: "Resolving No Space Left on Device Error on NixOS"
+title: "Nixos | No Space Left on Device"
 description: "Learn how to resolve the 'No space left on device' error on NixOS by optimizing tmpfs and swap space for seamless package installations."
 publishDate: "12 Aug 2024"
 tags: ["nixos" ]

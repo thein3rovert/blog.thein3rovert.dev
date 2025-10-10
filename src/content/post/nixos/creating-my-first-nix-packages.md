@@ -1,5 +1,5 @@
 ---
-title: "Creating my first nix package"
+title: "Building | My first nix package"
 description: "This post describes the process of creating a Nix package for the Gruvbox Factory CLI tool on NixOS, including using nix-init for initialization, handling dependency issues, and successfully building and testing the package"
 publishDate: "12 April 2025"
 tags: ["webmentions", "astro", "social"]
