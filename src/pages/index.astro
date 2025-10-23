@@ -22,16 +22,16 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 
 <PageLayout meta={{ title: "Home" }}>
   <!-- Introduction Section -->
-  <section class="border p-4 rounded-lg shadow-lg" style="border: 2px solid #ffffff;">
+  <section class="px-1 sm:p-4 mb-8">
 		<h2 class="title mb-6">HI, I'M SAMAD.</h2>
-		<p class="mb-4">
+		<p class="mb-4 text-base">
 			Coder, cyclist, hiker, mini-PC enthusiast, soon-to-be long-haul homelaber, GNU/Linux guy, and
 			mid-tier keyboard snob. I use Nix, btw.
 		</p>
 		<SocialList />
 		<hr class="">
 		<h2 class="title mb-6 pt-6">CONTACT</h2>
-		<p>
+		<p class="text-base">
     <!-- Add glance homepage when ready -->
 		<!-- <a href="https://linkding.thein3rovert.dev">thein3rovert.dev</a> -->
 		<a href="mailto:danielolaibi@gmail.com">thein3rovert@gmail.com</a>
@@ -39,11 +39,11 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 	</section>
 
   <!--Post section -->
-	<section class="mt-16" aria-label="Blog Posts">
-    <h2 class="title text-accent mb-6 text-xl text-center">
-      <a href="/posts/">./Posts</a>
+	<section class="mt-4 px-1 sm:p-4" aria-label="Blog Posts">
+    <h2 class="title text-accent mb-4 text-xl text-center">
+      <a href="/terminal/">recent</a>
     </h2>
-    <ul class=" text-white-500 font-mono p-4 rounded-lg shadow-lg space-y-2" role="list" style="border: 2px solid #ffffff;">
+    <ul class=" text-white-500 font-mono space-y-1 text-base" role="list">
       {
       allPostsByDate.map((p) => (
       <li class="flex items-start">
