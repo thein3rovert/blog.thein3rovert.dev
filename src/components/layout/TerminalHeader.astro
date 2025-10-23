@@ -43,7 +43,7 @@ if (content && data) {
 	if (currentPath === "/") {
 		filePath = "/home/thein3rovert";
 		fileSize = "16488 words";
-	} else if (currentPath.startsWith("/posts/")) {
+	} else if (currentPath.startsWith("/posts/") || currentPath.startsWith("/blog/")) {
 		filePath = "/home/thein3rovert/posts";
 		fileSize = "12000 words";
 	} else if (currentPath.startsWith("/about")) {
@@ -55,9 +55,6 @@ if (content && data) {
 	} else if (currentPath.startsWith("/code")) {
 		filePath = "/home/thein3rovert/code";
 		fileSize = "2000 words";
-	} else if (currentPath.startsWith("/terminal")) {
-		filePath = "/home/thein3rovert/posts";
-		fileSize = "12000 words";
 	} else {
 		filePath = "/home/thein3rovert/posts";
 		fileSize = "16488 words";

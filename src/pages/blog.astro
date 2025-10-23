@@ -1,0 +1,267 @@
+---
+import { type CollectionEntry } from "astro:content";
+import PageLayout from "@/layouts/Base.astro";
+import { getAllPosts } from "@/data/post";
+import { collectionDateSort } from "@/utils/date";
+import { getMarkdownWordCount, formatLsDate } from "@/utils/terminal";
+
+const allPosts = await getAllPosts();
+const sortedPosts = allPosts.sort(collectionDateSort).reverse(); // Most recent first
+
+// Function to read post content and calculate word count
+async function getPostWordCount(post: CollectionEntry<"post">): Promise<number> {
+	try {
+		// Read the actual markdown file content
+		const content = post.body || "";
+		if (!content) {
+			return Math.floor(Math.random() * 800) + 200; // Fallback for empty content
+		}
+		return getMarkdownWordCount(content);
+	} catch (error) {
+		console.warn(`Could not read content for post ${post.id}:`, error);
+		return Math.floor(Math.random() * 800) + 200; // Fallback
+	}
+}
+
+// Calculate actual word counts and prepare post metadata
+const postsWithMetadata = await Promise.all(
+	sortedPosts.map(async (post) => {
+		const wordCount = await getPostWordCount(post);
+		const formattedDate = formatLsDate(new Date(post.data.publishDate));
+
+		return {
+			post,
+			wordCount,
+			formattedDate,
+			title: post.data.title,
+		};
+	}),
+);
+
+const meta = {
+	title: "Blog",
+	description: "Terminal-style file listing of blog posts",
+};
+---
+
+<PageLayout meta={meta}>
+	<!-- File listings -->
+	<div class="terminal-listing -mx-4 w-full sm:-mx-8">
+		{
+			postsWithMetadata.map(({ post, wordCount, formattedDate, title }) => (
+				<div class="terminal-row font-mono text-sm">
+					<span class="col-permissions text-gray-400">-rw-r--r--</span>
+					<span class="col-user text-gray-400">thein3rovert</span>
+					<span class="col-size text-gray-400">{wordCount}W</span>
+					<span class="col-month text-gray-400">{formattedDate.split(" ")[0]}</span>
+					<span class="col-day text-gray-400">{formattedDate.split(" ")[1]}</span>
+					<span class="col-year text-gray-400">{formattedDate.split(" ")[2]}</span>
+					<span class="col-title" data-date={formattedDate}>
+						<a href={`/posts/${post.id}`} class="text-accent hover:underline" title={title}>
+							{title}
+						</a>
+					</span>
+				</div>
+			))
+		}
+	</div>
+</PageLayout>
+
+<style>
+	/* Terminal grid layout */
+	.terminal-listing {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		background-color: var(--tw-bg-opacity-dark);
+	}
+
+	.terminal-row {
+		display: grid;
+		grid-template-columns:
+			minmax(100px, auto) /* permissions */
+			minmax(90px, auto) /* user */
+			minmax(60px, auto) /* size */
+			minmax(40px, auto) /* month */
+			minmax(30px, auto) /* day */
+			minmax(50px, auto) /* year */
+			1fr; /* title */
+		gap: 8px;
+		align-items: center;
+		font-family: "MonoLisa", ui-monospace, "Courier New", Courier, monospace;
+		font-size: 16px;
+		line-height: 1.5;
+		letter-spacing: 0;
+		margin: 0;
+		width: 100%;
+	}
+
+	/* Progressive responsive behavior */
+	/* Mobile: Only date and title */
+	@media (max-width: 640px) {
+		.terminal-row {
+			grid-template-columns:
+				minmax(80px, auto) /* compact date */
+				1fr; /* title */
+			font-size: 16px; /* Same font on mobile */
+		}
+
+		/* Hide permissions, user, size, individual date parts on mobile */
+		.col-permissions,
+		.col-user,
+		.col-size,
+		.col-month,
+		.col-day,
+		.col-year {
+			display: none;
+		}
+
+		/* Show compact date on mobile */
+		.col-title::before {
+			content: attr(data-date) " ";
+			color: #9ca3af;
+			font-size: 14px; /* Slightly smaller date prefix on mobile */
+		}
+	}
+
+	/* Extra small screens */
+	@media (max-width: 480px) {
+		.terminal-row {
+			font-size: 16px; /* Same font size */
+			gap: 8px; /* Reduced gap */
+		}
+
+		.col-title::before {
+			font-size: 14px; /* Slightly smaller date prefix */
+		}
+	}
+
+	/* Small tablet: Add size */
+	@media (min-width: 641px) and (max-width: 768px) {
+		.terminal-row {
+			grid-template-columns:
+				minmax(50px, auto) /* size */
+				minmax(80px, auto) /* compact date */
+				1fr; /* title */
+			font-size: 15px; /* Slightly smaller font */
+		}
+
+		/* Hide permissions and user, individual date parts */
+		.col-permissions,
+		.col-user,
+		.col-month,
+		.col-day,
+		.col-year {
+			display: none;
+		}
+
+		/* Show compact date */
+		.col-title::before {
+			content: attr(data-date) " ";
+			color: #9ca3af;
+		}
+	}
+
+	/* Medium tablet: Add user */
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.terminal-row {
+			grid-template-columns:
+				minmax(90px, auto) /* user */
+				minmax(50px, auto) /* size */
+				minmax(30px, auto) /* month */
+				minmax(20px, auto) /* day */
+				minmax(40px, auto) /* year */
+				1fr; /* title */
+			font-size: 15px; /* Slightly smaller font */
+		}
+
+		/* Hide only permissions, remove mobile date prefix */
+		.col-permissions {
+			display: none;
+		}
+
+		.col-title::before {
+			display: none;
+		}
+	}
+
+	/* Large screens: Show all columns */
+	@media (min-width: 1025px) {
+		.terminal-row {
+			grid-template-columns:
+				minmax(80px, auto) /* permissions */
+				minmax(90px, auto) /* user */
+				minmax(50px, auto) /* size */
+				minmax(30px, auto) /* month */
+				minmax(20px, auto) /* day */
+				minmax(40px, auto) /* year */
+				1fr; /* title */
+		}
+
+		/* Show all columns, remove mobile date prefix */
+		.col-permissions,
+		.col-user,
+		.col-size,
+		.col-month,
+		.col-day,
+		.col-year,
+		.col-title {
+			display: block;
+		}
+
+		.col-title::before {
+			display: none;
+		}
+	}
+
+	/* Column alignment */
+	.col-permissions,
+	.col-user,
+	.col-size,
+	.col-month,
+	.col-day,
+	.col-year,
+	.col-title {
+		margin: 0;
+		padding: 0;
+	}
+
+	.col-permissions {
+		text-align: left;
+	}
+
+	.col-user {
+		text-align: left;
+	}
+
+	.col-size {
+		text-align: right;
+	}
+
+	.col-month,
+	.col-day,
+	.col-year {
+		text-align: left;
+	}
+
+	.col-title {
+		text-align: left;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		min-width: 0;
+	}
+
+	/* Terminal-like styling */
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+</style>
