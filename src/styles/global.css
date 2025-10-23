@@ -178,6 +178,10 @@
 		@apply hover:decoration-link underline underline-offset-2 hover:decoration-2;
 	}
 
+	hr {
+		@apply border-t border-gray-600 opacity-30;
+	}
+
 	.title {
 		@apply text-accent-2 text-2xl font-semibold;
 	}
