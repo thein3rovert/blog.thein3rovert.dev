@@ -96,7 +96,7 @@ export default {
               marginBottom: "1.25rem",
             },
             code: {
-              fontSize: "var(--text-sm)",
+              fontSize: "16px",
               fontWeight: "400",
             },
           },
