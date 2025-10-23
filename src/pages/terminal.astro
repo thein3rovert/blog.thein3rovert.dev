@@ -92,7 +92,7 @@ const meta = {
 		gap: 16px;
 		align-items: center;
 		font-family: "MonoLisa", ui-monospace, "Courier New", Courier, monospace;
-		font-size: 14px;
+		font-size: 16px;
 		line-height: 1.5;
 		letter-spacing: 0;
 		margin: 0;
@@ -106,7 +106,7 @@ const meta = {
 			grid-template-columns:
 				minmax(80px, auto) /* compact date */
 				1fr; /* title */
-			font-size: 12px; /* Smaller font on mobile */
+			font-size: 14px; /* Smaller font on mobile */
 		}
 
 		/* Hide permissions, user, size, individual date parts on mobile */
@@ -123,19 +123,19 @@ const meta = {
 		.col-title::before {
 			content: attr(data-date) " ";
 			color: #9ca3af;
-			font-size: 11px; /* Even smaller date prefix on mobile */
+			font-size: 12px; /* Even smaller date prefix on mobile */
 		}
 	}
 
 	/* Extra small screens */
 	@media (max-width: 480px) {
 		.terminal-row {
-			font-size: 11px; /* Even smaller font */
+			font-size: 13px; /* Even smaller font */
 			gap: 8px; /* Reduced gap */
 		}
 
 		.col-title::before {
-			font-size: 10px; /* Tiny date prefix */
+			font-size: 11px; /* Tiny date prefix */
 		}
 	}
 
@@ -146,7 +146,7 @@ const meta = {
 				minmax(50px, auto) /* size */
 				minmax(80px, auto) /* compact date */
 				1fr; /* title */
-			font-size: 13px; /* Slightly smaller font */
+			font-size: 15px; /* Slightly smaller font */
 		}
 
 		/* Hide permissions and user, individual date parts */
@@ -175,7 +175,7 @@ const meta = {
 				minmax(20px, auto) /* day */
 				minmax(40px, auto) /* year */
 				1fr; /* title */
-			font-size: 13px; /* Slightly smaller font */
+			font-size: 15px; /* Slightly smaller font */
 		}
 
 		/* Hide only permissions, remove mobile date prefix */
