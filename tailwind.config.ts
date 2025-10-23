@@ -89,6 +89,12 @@ export default {
         },
         sm: {
           css: {
+            fontSize: "16px",
+            lineHeight: "1.5",
+            p: {
+              marginTop: "1.25rem",
+              marginBottom: "1.25rem",
+            },
             code: {
               fontSize: "var(--text-sm)",
               fontWeight: "400",
