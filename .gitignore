@@ -25,3 +25,5 @@ pnpm-debug.log*
 .astro
 
 .direnv
+claude.md
+REFACTORING_SUMMARY.md

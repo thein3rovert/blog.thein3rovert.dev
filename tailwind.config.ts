@@ -4,6 +4,18 @@ export default {
   plugins: [require("@tailwindcss/typography")],
   theme: {
     extend: {
+      fontFamily: {
+        'mono': ['MonoLisa', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+      },
+      fontWeight: {
+        thin: '100',
+        extralight: '200',
+        light: '300',
+        normal: '400',
+        medium: '500',
+        bold: '700',
+        black: '900',
+      },
       typography: () => ({
         DEFAULT: {
           css: {
@@ -77,8 +89,14 @@ export default {
         },
         sm: {
           css: {
+            fontSize: "16px",
+            lineHeight: "1.5",
+            p: {
+              marginTop: "1.25rem",
+              marginBottom: "1.25rem",
+            },
             code: {
-              fontSize: "var(--text-sm)",
+              fontSize: "16px",
               fontWeight: "400",
             },
           },

@@ -1,5 +1,5 @@
 ---
-title: "Freshrss installation on nixos rant"
+title: "Blog | Freshrss on nixos"
 description: "My journey of setting up FreshRSS on NixOS, highlighting the challenges faced with configuration, database choices, and the eventual decision to use Docker for simplicity."
 publishDate: "25 May 2025"
 tags: ["freshrss", "traefik", "docker"]
