@@ -27,7 +27,7 @@
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              # nodejs # Make sure to have the right version used
+              nodejs # Make sure to have the right version used
               biome
             ];
             shellHook = ''
