@@ -2,7 +2,6 @@
 import { type CollectionEntry } from "astro:content";
 
 import Masthead from "@/components/blog/Masthead.astro";
-import WebMentions from "@/components/blog/webmentions/index.astro";
 
 import BaseLayout from "./Base.astro";
 
@@ -36,7 +35,6 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 				class="prose prose-sm prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-gray-600 prose-headings:hover:before:text-accent prose-headings:before:content-none w-full lg:max-w-4xl"
 			>
 				<slot />
-				<WebMentions />
 			</div>
 		</div>
 	</article>
