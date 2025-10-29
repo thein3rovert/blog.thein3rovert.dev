@@ -1,25 +1,26 @@
 ---
-import Search from "@/components/Search.astro";
 import ThemeToggle from "@/components/ThemeToggle.astro";
-// import { menuLinks } from "@/site.config";
-import { MENU_LINKS } from "@/data/constants";
-import { siteConfig } from "../../site.config";
+import { menuLinks, siteConfig } from "@/site.config";
+
+const url = new URL(Astro.request.url);
 ---
 
 <header class="group relative mb-28 flex items-center sm:ps-18" id="main-header">
 	<div class="flex sm:flex-col">
 		<a
-			aria-current={Astro.url.pathname === "/" ? "page" : false}
-			class="inline-flex items-center grayscale hover:filter-none sm:relative sm:inline-block"
+			aria-current={url.pathname === "/" ? "page" : false}
+			class="inline-flex items-center sm:relative sm:inline-block"
 			href="/"
+			data-astro-reload
 		>
 			<img
 				class="me-3 sm:absolute sm:-start-28 sm:-top-10 sm:me-0"
 				src="/penguin-svgrepo-com.svg"
 				alt="Thein3rovert logo"
-				width="125"
-				height="125"
+				width="100"
+				height="100"
 			/>
+
 			<title>Logo</title>
 			<span class="text-xl font-bold sm:text-2xl">{siteConfig.title}</span>
 		</a>
@@ -29,7 +30,7 @@ import { siteConfig } from "../../site.config";
 			id="navigation-menu"
 		>
 			{
-				MENU_LINKS.map((link) => (
+				menuLinks.map((link) => (
 					<a
 						aria-current={Astro.url.pathname === link.path ? "page" : false}
 						class="px-4 py-4 underline-offset-2 hover:underline sm:py-0"
@@ -42,7 +43,6 @@ import { siteConfig } from "../../site.config";
 			}
 		</nav>
 	</div>
-	<Search />
 	<ThemeToggle />
 	<mobile-button>
 		<button

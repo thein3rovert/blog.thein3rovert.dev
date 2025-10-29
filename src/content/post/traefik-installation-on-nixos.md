@@ -1,5 +1,5 @@
 ---
-title: "How to setup Traefik on nixos"
+title: "Setup | Traefik on nixos"
 description: "This blog provides my personal account of setting up Traefik on NixOS, highlighting its ease of configuration, integration with Let's Encrypt for SSL/TLS, and my jjourney in learning and configuring entry points, certificate resolvers, and routing for a secure and efficient server environment."
 publishDate: "14 May 2025"
 tags: ["traefik"]

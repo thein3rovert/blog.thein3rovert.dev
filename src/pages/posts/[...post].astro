@@ -3,8 +3,8 @@
 import type { GetStaticPathsResult } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import PostLayout from "@/layouts/BlogPost.astro";
-import {render} from "astro:content"
+import PostLayout from "@/layouts/TerminalBlogPost.astro";
+import { render } from "astro:content";
 
 // getStaticPaths function generates routes for all blog posts at build time
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
@@ -12,8 +12,8 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 	const posts: CollectionEntry<"post">[] = await getCollection("post");
 	// Map each post to a route parameter and props object
 	const params = posts.map((post) => ({
-		params: { post: post.id },  // Use post slug for URL
-		props: { post },  // Pass full post object as props
+		params: { post: post.id }, // Use post slug for URL
+		props: { post }, // Pass full post object as props
 	}));
 	return params;
 }

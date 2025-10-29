@@ -1,5 +1,5 @@
 ---
-title: "How to setup ddutils on Nixos"
+title: "Setup | ddutils on Nixos"
 description: "This post provides a guide on installing and configuring ddcutil on NixOS"
 publishDate: "04 Aug 2024"
 tags: ["nixos", "ddutils"]

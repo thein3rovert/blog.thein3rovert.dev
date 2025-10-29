@@ -1,0 +1,75 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	content: CollectionEntry<"post">;
+}
+
+const {
+	content: { data },
+} = Astro.props;
+---
+
+<div class="mb-8 font-mono text-sm">
+	<!-- Blog post title and metadata (terminal style) -->
+	<div class="mb-6 space-y-2">
+		{data.draft && <span class="text-red-500">(Draft)</span>}
+		<h1 class="text-accent-2 text-2xl font-bold">{data.title}</h1>
+
+		<div class="text-gray-400">
+			Published:{" "}
+			{
+				new Date(data.publishDate).toLocaleDateString("en-US", {
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+				})
+			}
+			{
+				data.updatedDate &&
+					new Date(data.publishDate).getTime() !== new Date(data.updatedDate).getTime() && (
+						<span class="ml-4">
+							Updated:{" "}
+							{new Date(data.updatedDate).toLocaleDateString("en-US", {
+								year: "numeric",
+								month: "long",
+								day: "numeric",
+							})}
+						</span>
+					)
+			}
+		</div>
+
+		{
+			data.tags && data.tags.length > 0 && (
+				<div class="text-gray-400">
+					Tags:{" "}
+					{data.tags.map((tag, i) => (
+						<span>
+							<a href={`/tags/${tag}/`} class="text-accent hover:underline">
+								#{tag}
+							</a>
+							{i < data.tags.length - 1 && ", "}
+						</span>
+					))}
+				</div>
+			)
+		}
+	</div>
+</div>
+
+<style>
+	.font-mono {
+		font-family: "MonoLisa", ui-monospace, "Courier New", Courier, monospace;
+		letter-spacing: 0;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+</style>

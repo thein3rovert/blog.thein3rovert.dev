@@ -21,31 +21,38 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 ---
 
 <PageLayout meta={{ title: "Home" }}>
-  <section class="border p-4">
+  <!-- Introduction Section -->
+  <section class="px-1 sm:p-4 mb-8">
 		<h2 class="title mb-6">HI, I'M SAMAD.</h2>
-		<p class="mb-4">
+		<p class="mb-4 text-base">
 			Coder, cyclist, hiker, mini-PC enthusiast, soon-to-be long-haul homelaber, GNU/Linux guy, and
 			mid-tier keyboard snob. I use Nix, btw.
 		</p>
 		<SocialList />
 		<hr class="">
 		<h2 class="title mb-6 pt-6">CONTACT</h2>
-		<p>
+		<p class="text-base">
+    <!-- Add glance homepage when ready -->
 		<!-- <a href="https://linkding.thein3rovert.dev">thein3rovert.dev</a> -->
 		<a href="mailto:danielolaibi@gmail.com">thein3rovert@gmail.com</a>
 		</p>
 	</section>
-	<section class="mt-16">
-		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Posts</a></h2>
-		<ul class="space-y-6" role="list">
-			{
-				allPostsByDate.map((p) => (
-					<li class="grid gap-2 sm:grid-cols-[auto_1fr]">
-						<PostPreview post={p} />
-					</li>
-				))
-			}
-		</ul>
+
+  <!--Post section -->
+	<section class="mt-4 px-1 sm:p-4" aria-label="Blog Posts">
+    <h2 class="title text-accent mb-4 text-xl text-center">
+      <a href="/blog/">recent</a>
+    </h2>
+    <ul class=" text-white-500 font-mono space-y-1 text-base" role="list">
+      {
+      allPostsByDate.map((p) => (
+      <li class="flex items-start">
+      <span class="pr-2 select-none">$</span>
+      <PostPreview post={p} />
+      </li>
+      ))
+      }
+    </ul>
 	</section>
 	{
 	// I dont want to have the note in the homepage
@@ -54,13 +61,14 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 				<h2 class="title text-accent mb-6 text-xl">
 					<a href="/notes/">Notes</a>
 				</h2>
-				<ul class="space-y-6" role="list">
-					{latestNotes.map((note) => (
-						<li>
-							<Note note={note} as="h3" isPreview />
-						</li>
-					))}
-				</ul>
+        <ul class="bg-black text-green-500 font-mono p-4 rounded-lg shadow-lg space-y-2" role="list" style="border: 2px solid #222;">
+          {latestNotes.map((note, idx) => (
+            <li class="flex items-start">
+              <span class="pr-2 select-none">$ {idx + 1}</span>
+              <Note note={note} as="h3" isPreview />
+            </li>
+          ))}
+        </ul>
 			</section> -->
 		)
 	}

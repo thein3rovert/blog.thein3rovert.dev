@@ -1,5 +1,5 @@
 ---
-title: "Deploying my personal blog using  Docker and Traefik"
+title: "Deployment | Using Docker and Traefik"
 description: "Deploying my Astro blog using Docker with nginx - figuring out static vs dynamic builds, Docker configuration, and Traefik integration challenges along the way."
 publishDate: "28 May 2025"
 tags: ["docker", "traefik", "deployment"]

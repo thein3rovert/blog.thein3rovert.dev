@@ -10,17 +10,16 @@ import { getFormattedDate } from "@/utils/date";
 // };
 
 interface Props extends IElement {
-  post: CollectionEntry<"post">;
-  withDesc?: boolean;
+	post: CollectionEntry<"post">;
+	withDesc?: boolean;
 }
 
-const { post, as: Element = "div", withDesc = false} = Astro.props;
+const { post, as: Element = "div", withDesc = false } = Astro.props;
 const date = new Date(post.data.publishDate);
 const datetime = date.toISOString();
-const postDate = getFormattedDate(date, {month: "short"});
+const postDate = getFormattedDate(date, { month: "short" });
 // const { as: Tag = "div", post, withDesc = false } = Astro.props;
 ---
-
 
 <time datetime={datetime} class="min-w-[120px] text-gray-500">{postDate}</time>
 <Element>
@@ -28,7 +27,7 @@ const postDate = getFormattedDate(date, {month: "short"});
 		{post.data.title}
 	</a>
 </Element>
-{withDesc && <q class="mt-2 block italic line-clamp-3">{post.data.description}</q>}
+{withDesc && <q class="mt-2 line-clamp-3 block italic">{post.data.description}</q>}
 <!--
 <FormattedDate
 	class="min-w-30 font-semibold text-gray-600 dark:text-gray-400"
