@@ -27,8 +27,9 @@
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              # nodejs # Make sure to have the right version used
+              nodejs # Make dynamic later
               biome
+              podman-compose
             ];
             shellHook = ''
               echo "----------------------------------------------"
