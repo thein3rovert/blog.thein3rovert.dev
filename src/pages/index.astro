@@ -21,38 +21,39 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 ---
 
 <PageLayout meta={{ title: "Home" }}>
-  <!-- Introduction Section -->
-  <section class="px-1 sm:p-4 mb-8">
-		<h2 class="title mb-6">HI, I'M SAMAD.</h2>
+	<!-- Introduction Section -->
+	<section class="mb-4 px-1 sm:p-4">
+		<h2 class="blinking-title mb-6">HI, I'M SAMAD.</h2>
 		<p class="mb-4 text-base">
 			Coder, cyclist, hiker, mini-PC enthusiast, soon-to-be long-haul homelaber, GNU/Linux guy, and
 			mid-tier keyboard snob. I use Nix, btw.
 		</p>
 		<SocialList />
-		<hr class="">
-		<h2 class="title mb-6 pt-6">CONTACT</h2>
-		<p class="text-base">
-    <!-- Add glance homepage when ready -->
-		<!-- <a href="https://linkding.thein3rovert.dev">thein3rovert.dev</a> -->
-		<a href="mailto:danielolaibi@gmail.com">thein3rovert@gmail.com</a>
-		</p>
+
 	</section>
 
-  <!--Post section -->
-	<section class="mt-4 px-1 sm:p-4" aria-label="Blog Posts">
-    <h2 class="title text-accent mb-4 text-xl text-center">
-      <a href="/blog/">recent</a>
-    </h2>
-    <ul class=" text-white-500 font-mono space-y-1 text-base" role="list">
-      {
-      allPostsByDate.map((p) => (
-      <li class="flex items-start">
-      <span class="pr-2 select-none">$</span>
-      <PostPreview post={p} />
-      </li>
-      ))
-      }
-    </ul>
+  <!-- Journal Section -->
+	<section class="px-1 sm:p-4" aria-label="Journal">
+    <h2 class="blinking-title mb-6">JOURNAL</h2>
+
+    <div class="font-mono text-[6px] xs:text-[8px] sm:text-xs md:text-sm mb-6">
+      <pre class="whitespace-pre text-[6px] xs:text-[8px] sm:text-xs md:text-sm leading-tight">
+████████ ██   ██ ███████ ██ ███    ██ ██████  ██████   ██████  ██    ██ ███████ ██████  ████████
+   ██    ██   ██ ██      ██ ████   ██      ██ ██   ██ ██    ██ ██    ██ ██      ██   ██    ██
+   ██    ███████ █████   ██ ██ ██  ██  █████  ██████  ██    ██ ██    ██ █████   ██████     ██
+   ██    ██   ██ ██      ██ ██  ██ ██      ██ ██   ██ ██    ██  ██  ██  ██      ██   ██    ██
+   ██    ██   ██ ███████ ██ ██   ████ ██████  ██   ██  ██████    ████   ███████ ██   ██    ██
+      </pre>
+    </div>
+
+    <div class="text-base leading-relaxed mb-4">
+      <p class="mb-4">
+        Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off--then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship.
+      </p>
+      <p class="text-sm italic text-gray-600">
+        - Herman Melville, Moby-Dick; or, The Whale (1851)
+      </p>
+    </div>
 	</section>
 	{
 	// I dont want to have the note in the homepage
