@@ -23,6 +23,7 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 echo "Deployment Starting..."
 
+
 git pull origin "$ALLOWED_BRANCH"
 
 # === Install dependencies (Clean install) ===
