@@ -186,6 +186,28 @@
 		@apply text-2xl font-semibold;
 	}
 
+	.blinking-title {
+		@apply text-2xl font-semibold;
+		position: relative;
+	}
+
+	.blinking-title::after {
+		content: "█";
+		animation: blink 1s infinite;
+		margin-left: 0.1em;
+	}
+
+	@keyframes blink {
+		0%,
+		50% {
+			opacity: 1;
+		}
+		51%,
+		100% {
+			opacity: 0;
+		}
+	}
+
 	.admonition {
 		--admonition-color: var(--tw-prose-quotes);
 		@apply my-4 border-s-2 border-(--admonition-color) py-4 ps-4;
