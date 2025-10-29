@@ -29,6 +29,7 @@
             packages = with pkgs; [
               nodejs # Make dynamic later
               biome
+              podman-compose
             ];
             shellHook = ''
               echo "----------------------------------------------"
