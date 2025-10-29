@@ -178,6 +178,11 @@
 		@apply hover:decoration-link underline underline-offset-2 hover:decoration-2;
 	}
 
+	/* Make all link underlines thicker */
+	a {
+		text-decoration-thickness: 3px;
+	}
+
 	hr {
 		@apply border-t border-gray-600 opacity-30;
 	}
@@ -286,4 +291,28 @@
 	--tw-prose-links: var(--color-global-text);
 	--tw-prose-quotes: var(--color-quote);
 	--tw-prose-th-borders: #666;
+}
+
+/* Blog post prose links - thicker underlines */
+.prose a {
+	text-decoration-thickness: 3px;
+}
+
+/* Inline code block styling */
+.prose code:not(pre code) {
+	background-color: var(--color-global-text);
+	color: var(--color-global-bg);
+	padding: 0.125rem 0.25rem;
+	border-radius: 2px;
+	font-weight: bold;
+}
+
+/* Link hover block highlight */
+a:hover {
+	background-color: var(--color-global-text);
+	color: var(--color-global-bg);
+	padding: 0.125rem 0.25rem;
+	border-radius: 2px;
+	font-weight: bold;
+	text-decoration: none;
 }
