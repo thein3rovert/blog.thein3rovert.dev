@@ -5,123 +5,123 @@
 
 /* MonoLisa Font Family */
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-Thin.ttf") format("truetype");
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-ThinItalic.ttf') format('truetype');
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-ThinItalic.ttf") format("truetype");
+	font-weight: 100;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-ExtraLight.ttf') format('truetype');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-ExtraLight.ttf") format("truetype");
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-ExtraLightItalic.ttf') format('truetype');
-  font-weight: 200;
-  font-style: italic;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-ExtraLightItalic.ttf") format("truetype");
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-Light.ttf") format("truetype");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-LightItalic.ttf") format("truetype");
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-Regular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-RegularItalic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-RegularItalic.ttf") format("truetype");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-MediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-MediumItalic.ttf") format("truetype");
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-BoldItalic.ttf") format("truetype");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-Black.ttf") format("truetype");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-BlackItalic.ttf') format('truetype');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonoLisa-BlackItalic.ttf") format("truetype");
+	font-weight: 900;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonaLisa.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+	font-family: "MonoLisa";
+	src: url("../assets/fonts/MonaLisa.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }
 
 /* use a selector-based strategy for dark mode */
@@ -183,7 +183,7 @@
 	}
 
 	.title {
-		@apply text-accent-2 text-2xl font-semibold;
+		@apply text-2xl font-semibold;
 	}
 
 	.admonition {
@@ -259,7 +259,7 @@
 	--tw-prose-bold: var(--color-global-text);
 	--tw-prose-bullets: var(--color-global-text);
 	--tw-prose-code: var(--color-global-text);
-	--tw-prose-headings: var(--color-accent-2);
+	--tw-prose-headings: var(--color-global-text);
 	--tw-prose-hr: 0.5px dashed #666;
 	--tw-prose-links: var(--color-global-text);
 	--tw-prose-quotes: var(--color-quote);
