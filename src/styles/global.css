@@ -309,8 +309,8 @@
 
 /* Link hover block highlight */
 a:hover {
-	background-color: var(--color-global-text);
-	color: var(--color-global-bg);
+	background-color: var(--color-global-text) !important;
+	color: var(--color-global-bg) !important;
 	padding: 0.125rem 0.25rem;
 	border-radius: 2px;
 	font-weight: bold;
