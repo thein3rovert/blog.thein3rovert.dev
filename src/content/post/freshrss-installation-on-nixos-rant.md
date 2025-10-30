@@ -1,5 +1,5 @@
 ---
-title: "Blog | Freshrss on nixos"
+title: "Blog|Freshrss on nixos"
 description: "My journey of setting up FreshRSS on NixOS, highlighting the challenges faced with configuration, database choices, and the eventual decision to use Docker for simplicity."
 publishDate: "25 May 2025"
 tags: ["freshrss", "traefik", "docker"]
@@ -171,8 +171,6 @@ May 25 09:11:34 nixos php-fpm[19792]: [NOTICE] systemd monitor interval set to 1
 
 Now I can visit `http://localhost/` to view my installed FreshRSS.
 
-![[Setting up freshrss on nixos-1748162052476.png]]
-
 So I keep getting permission denied error when FreshRSS is trying to view my password.
 ```
 May 25 11:01:34 nixos systemd[1]: Starting Set up the state directory for FreshRS>
@@ -189,8 +187,6 @@ I couldn't figure out how to make it work with the password file so I borrowed a
 
 Yes, it's hardcoded now. Keep in mind this is just for testing purposes - I will figure out how to make it work with a password file before I move it to my server, or I could just use a hashed password instead.
 
-![[Setting up freshrss on nixos-1748169325388.png]]
-
 Yay, now it's working and I can experiment.
 
 ### My next step
@@ -200,14 +196,9 @@ My next step will be setting it up on my server, however the simpliest way to se
 >
 ##### Resources
 https://github.com/FreshRSS/FreshRSS/tree/edge/Docker
+
 https://danielpersson.dev/2023/03/20/freshrss-tutorial-install-sort-by-date-and-more/
+
 https://discourse.nixos.org/t/new-to-nix-help-me-fix-config/56577
+
 https://discourse.nixos.org/t/permission-denied-when-reading-passwordfile/58823
-
-**West: Similar**
-
-**East: Opposite**
-
-**North: Theme / Questions**
-
-**South: What does this leads to**

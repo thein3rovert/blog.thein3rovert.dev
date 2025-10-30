@@ -1,5 +1,5 @@
 ---
-title: "Deployment | Using Docker and Traefik"
+title: "Deployment|Docker and Traefik"
 description: "Deploying my Astro blog using Docker with nginx - figuring out static vs dynamic builds, Docker configuration, and Traefik integration challenges along the way."
 publishDate: "28 May 2025"
 tags: ["docker", "traefik", "deployment"]
@@ -179,8 +179,6 @@ sudo podman compose up --build id
 The deployment was successful, and I could see the service in my Traefik dashboard.
 
 ## Lessons Learned
-
-This deployment journey taught me several valuable lessons:
 
 1. **Permission Management is Critical**: Understanding how different system users (like Traefik) interact with services like Docker/Podman was crucial. The solution wasn't obvious at first, but learning about user groups and socket permissions was enlightening.
 
