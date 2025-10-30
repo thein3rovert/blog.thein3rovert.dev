@@ -1,5 +1,5 @@
 ---
-title: "Themeing | Oh-my-posh themes"
+title: "Themeing|Oh-my-posh"
 description: "The notes reflect on changing Oh-my-posh themes in Nix-OS, detailing the use of Kitty terminal and ZSH shell, and addressing configuration challenges with custom solutions."
 publishDate: "15 Aug 2024"
 tags: ["on-my-posh", "nixos", "productivity"]

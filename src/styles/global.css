@@ -328,14 +328,20 @@ a:hover {
 }
 
 /* Code block styling - match note section design */
-figure[data-rehype-pretty-code-figure] pre,
-.expressive-code pre,
-.astro-code,
-pre {
+figure[data-rehype-pretty-code-figure] pre:not(.no-border),
+.expressive-code pre:not(.no-border),
+.astro-code:not(.no-border),
+pre:not(.no-border) {
 	background: var(--color-global-bg) !important;
 	border: 1px solid var(--color-global-text);
 	border-opacity: 0.3;
 	border-radius: 4px;
+}
+
+/* No border styling for ASCII art and similar */
+.no-border {
+	background: transparent !important;
+	border: none !important;
 }
 
 /* Ensure code block content uses proper text color */
