@@ -1,11 +1,11 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import SocialList from "@/components/SocialList.astro";
-import PostPreview from "@/components/blog/PostPreview.astro";
 // import Note from "@/components/note/Note.astro";
 import { getAllPosts } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
+import BlogPostCard from "@/components/blog/BlogPostCard.astro";
 
 // Posts
 const MAX_POSTS = 10; // Changing the noof post in the frontend
@@ -29,7 +29,6 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 			mid-tier keyboard snob. I use Nix, btw.
 		</p>
 		<SocialList />
-
 	</section>
 
   <!-- Journal Section -->
@@ -55,8 +54,16 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
       </p>
     </div>
 	</section>
+
+  <!-- Blog Posts Section -->
+  <section class="mt-16 px-1 sm:p-4">
+    <!-- <h2 class="blinking-title mb-8">POSTS</h2> -->
+    {allPostsByDate.map((post) => (
+      <BlogPostCard post={post} />
+    ))}
+  </section>
+
 	{
-	// I dont want to have the note in the homepage
 		latestNotes.length > 0 && (
 			<!-- <section class="mt-16">
 				<h2 class="title text-accent mb-6 text-xl">

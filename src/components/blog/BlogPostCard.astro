@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getFormattedDate } from "@/utils/date";
+import { Image } from "astro:assets";
+import zeitImage from "@/assets/images/zeit.png";
+
+interface Props {
+	post: CollectionEntry<"post">;
+}
+
+const { post } = Astro.props;
+const formattedDate = getFormattedDate(new Date(post.data.publishDate), { month: "short" });
+const hasCoverImage = !!post.data.coverImage;
+---
+
+<article class="blog-post-card mb-20">
+	<div class="mb-4 flex flex-col">
+		<time datetime={post.data.publishDate.toISOString()} class="blog-post-date">
+			{formattedDate}
+		</time>
+		<a href={`/posts/${post.id}`} class="no-highlight">
+			<h2 class="blog-post-title">{post.data.title}</h2>
+		</a>
+	</div>
+
+	<a href={`/posts/${post.id}`} class="mb-6 block">
+		{
+			hasCoverImage ? (
+				<Image
+					src={post.data.coverImage!.src}
+					alt={post.data.coverImage!.alt}
+					width={800}
+					height={450}
+					class="blog-post-image"
+				/>
+			) : (
+				<div class="blog-post-placeholder">
+				<span>IV3</span>
+					<!-- <Image src={zeitImage} alt="ZEIT" width={800} height={450} class="blog-post-image" /> -->
+				</div>
+			)
+		}
+	</a>
+
+	<p class="blog-post-description">{post.data.description}</p>
+	<a href={`/posts/${post.id}`} class="blog-post-read-more">Read post</a>
+</article>

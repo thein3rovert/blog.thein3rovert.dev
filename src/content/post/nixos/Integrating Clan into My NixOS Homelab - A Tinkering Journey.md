@@ -4,10 +4,16 @@ description: "Discovering Clan at NixCon 2025"
 publishDate: "20 Oct 2025"
 tags: ["clan", "infrastructure", "nixos" ]
 updatedDate: 25 Oct 2025
+coverImage:
+  src: "./images/clan.png"
+  alt: "Clan infrastructure management for NixOS"
 ---
+
 ## Background: Discovering Clan at NixCon 2025
 
 Last month, I had the opportunity to attend NixCon 2025 online (unfortunately couldn't make it in person). It was an incredible experience learning about the latest developments in the Nix ecosystem. One of the talks that particularly caught my attention was about **Clan** - a tool for managing NixOS machines declaratively - presented by Qubae and Kenji Berthold.
+
+![Clan infrastructure management tool](./images/clan.png)
 
 You can watch their presentation here: [NixCon 2025 - Clan Talk](https://youtu.be/wwOEKMB0HQk?si=H4vFHmxs6ysETMMy)
 
@@ -413,7 +419,12 @@ clan machines update octavia
 ```
 And it worked! Octavia was now being managed through Clan while my other hosts continued to work normally with their existing setup.
 ## Reflections and Next Steps
-This experiment was exactly what I hoped for  a chance to explore Clan without disrupting my existing infrastructure. Here are my key takeaways:
+This experiment was exactly what I hoped for - a chance to explore Clan without disrupting my existing infrastructure. Here are my key takeaways:
+
+1. **Incremental adoption is possible** - You can integrate Clan alongside existing tools
+2. **Configuration coexistence** - Clan and traditional NixOS configs can live together
+3. **Good documentation** - The Clan docs were helpful for troubleshooting
+
 ## Resources
 
 - [Clan Documentation](https://docs.clan.lol/)
