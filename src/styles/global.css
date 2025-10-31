@@ -344,6 +344,81 @@ pre:not(.no-border) {
 	border: none !important;
 }
 
+/* Blog post styling for homepage */
+.blog-post-card {
+	transition: transform 0.3s ease;
+	margin-bottom: 4rem;
+}
+
+.blog-post-card:hover {
+	transform: translateY(-3px);
+}
+
+.blog-post-image {
+	aspect-ratio: 16/9;
+	object-fit: cover;
+	width: 100%;
+	border: 1px solid #333;
+}
+
+.blog-post-placeholder {
+	background-color: #111;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	aspect-ratio: 16/9;
+	font-size: 4rem;
+	font-weight: bold;
+	color: #333;
+	border: 1px solid #333;
+}
+
+.blog-post-title {
+	font-size: 1.5rem;
+	margin-bottom: 0.25rem;
+	transition: color 0.2s ease;
+	font-weight: normal;
+}
+
+.blog-post-title:hover {
+	color: var(--color-accent);
+	text-decoration: none;
+	background-color: transparent !important;
+	padding: 0 !important;
+}
+
+.blog-post-date {
+	font-size: 0.875rem;
+	color: #666;
+	margin-bottom: 0.5rem;
+	display: block;
+}
+
+.blog-post-description {
+	margin-bottom: 1.5rem;
+	line-height: 1.5;
+	color: var(--color-global-text);
+	font-size: 1rem;
+}
+
+.blog-post-read-more {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	border: 1px solid #333;
+	transition: all 0.2s ease;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.blog-post-read-more:hover {
+	background-color: var(--color-global-text) !important;
+	color: var(--color-global-bg) !important;
+	border-color: var(--color-global-text);
+	text-decoration: none;
+}
+
 /* Ensure code block content uses proper text color */
 figure[data-rehype-pretty-code-figure] pre code,
 .expressive-code pre code,
