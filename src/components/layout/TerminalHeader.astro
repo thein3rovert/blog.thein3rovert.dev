@@ -89,7 +89,7 @@ if (content && data) {
 					<span>
 						<a
 							href={link.path}
-							class={`hover:underline ${
+							class={`no-highlight hover:underline ${
 								currentPath === link.path ||
 								(link.path !== "/" && currentPath.startsWith(link.path))
 									? "text-accent font-bold"
@@ -123,8 +123,17 @@ if (content && data) {
 		text-decoration: none;
 	}
 
-	a:hover {
+	a:hover:not(.no-highlight) {
 		text-decoration: underline;
+	}
+
+	.no-highlight:hover {
+		background-color: transparent !important;
+		color: inherit !important;
+		padding: 0 !important;
+		border-radius: 0 !important;
+		font-weight: inherit !important;
+		text-decoration: underline !important;
 	}
 
 	/* Terminal header styling - full width at top */
