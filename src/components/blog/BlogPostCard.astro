@@ -2,7 +2,6 @@
 import type { CollectionEntry } from "astro:content";
 import { getFormattedDate } from "@/utils/date";
 import { Image } from "astro:assets";
-import zeitImage from "@/assets/images/zeit.png";
 
 interface Props {
 	post: CollectionEntry<"post">;
@@ -35,13 +34,12 @@ const hasCoverImage = !!post.data.coverImage;
 				/>
 			) : (
 				<div class="blog-post-placeholder">
-				<span>IV3</span>
-					<!-- <Image src={zeitImage} alt="ZEIT" width={800} height={450} class="blog-post-image" /> -->
+					<span>IV3</span>
 				</div>
 			)
 		}
 	</a>
 
 	<p class="blog-post-description">{post.data.description}</p>
-	<a href={`/posts/${post.id}`} class="blog-post-read-more">Read post</a>
+	<!-- <a href={`/posts/${post.id}`} class="blog-post-read-more">Read post</a> -->
 </article>
