@@ -46,22 +46,29 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
     </div>
 
     <div class="text-base leading-relaxed mb-4">
-      <p class="mb-4">
-        Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off--then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship.
-      </p>
+      <pre class="mb-4 whitespace-pre no-border text-left">
+"Our lives are so full of activity
+and chatter it's difficult to find quite time...
+Those are the moments that are the most creative
+for me. The location is less important than
+the choice to turn other things off.
+Because I find that the quitest
+times of my life speak
+the loudest".
+      </pre>
       <p class="text-sm italic text-gray-600">
-        - Herman Melville, Moby-Dick; or, The Whale (1851)
+        - Quite, Susan Cain;
       </p>
     </div>
 	</section>
 
   <!-- Blog Posts Section -->
-  <section class="mt-16 px-1 sm:p-4">
-    <!-- <h2 class="blinking-title mb-8">POSTS</h2> -->
+  <!-- <section class="mt-16 px-1 sm:p-4">
+    <h2 class="blinking-title mb-8">POSTS</h2>
     {allPostsByDate.map((post) => (
       <BlogPostCard post={post} />
     ))}
-  </section>
+  </section> -->
 
 	{
 		latestNotes.length > 0 && (

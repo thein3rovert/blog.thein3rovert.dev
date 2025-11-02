@@ -26,6 +26,13 @@ export default {
 				bold: "700",
 				black: "900",
 			},
+			fontSize: {
+				xs: "10px", // Override extra small
+				sm: "12px", // Override small
+				base: "14px", // Override base
+				lg: "16px", // Override large
+				xl: "18px", // Override extra large
+			},
 			typography: () => ({
 				DEFAULT: {
 					css: {
@@ -99,14 +106,14 @@ export default {
 				},
 				sm: {
 					css: {
-						fontSize: "15px",
-						lineHeight: "1.5",
+						fontSize: "14px",
+						lineHeight: "1.65",
 						p: {
 							marginTop: "1.25rem",
 							marginBottom: "1.25rem",
 						},
 						code: {
-							fontSize: "16px",
+							fontSize: "12px",
 							fontWeight: "400",
 						},
 					},
