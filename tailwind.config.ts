@@ -6,22 +6,23 @@ export default {
 		extend: {
 			fontFamily: {
 				mono: [
-					"MonoLisa",
-					"ui-monospace",
-					"SFMono-Regular",
-					"Menlo",
-					"Monaco",
-					"Consolas",
-					"Liberation Mono",
-					"Courier New",
-					"monospace",
+					// "MonoLisa",
+					// "ui-monospace",
+					// "SFMono-Regular",
+					// "Menlo",
+					// "Monaco",
+					// "Consolas",
+					// "Liberation Mono",
+					// "Courier New",
+					// "monospace",
+					"IoskeleyMono",
 				],
 			},
 			fontWeight: {
 				thin: "100",
 				extralight: "200",
-				light: "300",
-				normal: "400",
+				light: "600", // Currently been used
+				normal: "700",
 				medium: "500",
 				bold: "700",
 				black: "900",
@@ -29,7 +30,7 @@ export default {
 			fontSize: {
 				xs: "10px", // Override extra small
 				sm: "12px", // Override small
-				base: "14px", // Override base
+				base: "15px", // Override base
 				lg: "16px", // Override large
 				xl: "18px", // Override extra large
 			},
@@ -106,13 +107,19 @@ export default {
 				},
 				sm: {
 					css: {
-						fontSize: "14px",
+						fontSize: "15px",
 						lineHeight: "1.65",
+						fontFamily: {
+							mono: ["IoskeleyMono"],
+						},
 						p: {
 							marginTop: "1.25rem",
 							marginBottom: "1.25rem",
 						},
 						code: {
+							fontFamily: {
+								mono: ["IoskeleyMono"],
+							},
 							fontSize: "12px",
 							fontWeight: "400",
 						},
