@@ -1,5 +1,5 @@
 ---
-title: "Automation | Journey from Manual to Bash"
+title: "Manual to Bash"
 description: "My attempt at automating my blog deployment with bash scripting as a complete beginner, documenting all the mistakes, errors, and small wins along the way to finally getting ./deploy.sh to work."
 publishDate: "21 June 2025"
 tags: ["docker", "bash", "deployment", "automation"]
