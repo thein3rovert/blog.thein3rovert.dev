@@ -22,7 +22,7 @@ And right there, shining on my lock screen: a notification.
 Of course, I tap it, just to see which post it was. Somehow, ten minutes later, I’ve watched 20 reels. I can’t even remember the last 15, but I know I laughed, cried, and felt sad,  all in that short time.
 
 Ten minutes, and I’ve gone through a rollercoaster of emotions.
-That’s not normal. It’s like my brain’s being controlled by a remote — and the remote is the Reels algorithm.
+That’s not normal. It’s like my brain’s being controlled by a remote...and the remote is the Reels algorithm.
 
 ## Discovering RSS
 
@@ -39,7 +39,7 @@ I became more patient.
 My days were a bit more boring, but a lot less sad.
 I felt… **human**.
 
-Maybe I’ll write a separate post on the full benefits of a social media detox later, but for now, I want to share how I organized my RSS feed — and why you should too.
+Maybe I’ll write a separate post on the full benefits of a social media detox later, but for now, I want to share how I organized my RSS feed...and why you should too.
 ## Setting Up My RSS Feed
 
 I started by identifying my main interests: **technology**, **philosophy**, **academia**, **photography**, **podcasts**, and a few others.
