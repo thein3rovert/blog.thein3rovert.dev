@@ -3,125 +3,101 @@
 /* config for tailwindcss-typography plugin */
 @config "../../tailwind.config.ts";
 
-/* MonoLisa Font Family */
+/* IoskeleyMono Font Family */
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-Light.woff2") format("woff2");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-ThinItalic.ttf') format('truetype');
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-LightItalic.woff2") format("woff2");
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-ExtraLight.ttf') format('truetype');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-ExtraLightItalic.ttf') format('truetype');
-  font-weight: 200;
-  font-style: italic;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-Italic.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-Medium.woff2") format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-MediumItalic.woff2") format("woff2");
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-SemiBold.woff2") format("woff2");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-RegularItalic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-SemiBoldItalic.woff2") format("woff2");
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-MediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-BoldItalic.woff2") format("woff2");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-ExtraBold.woff2") format("woff2");
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonoLisa-BlackItalic.ttf') format('truetype');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'MonoLisa';
-  src: url('../assets/fonts/MonaLisa.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+	font-family: "IoskeleyMono";
+	src: url("../assets/fonts/ioskeleyMono/IoskeleyMono-ExtraBoldItalic.woff2") format("woff2");
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
 }
 
 /* use a selector-based strategy for dark mode */
@@ -178,12 +154,39 @@
 		@apply hover:decoration-link underline underline-offset-2 hover:decoration-2;
 	}
 
+	/* Make all link underlines thicker */
+	a {
+		text-decoration-thickness: 3px;
+	}
+
 	hr {
 		@apply border-t border-gray-600 opacity-30;
 	}
 
 	.title {
-		@apply text-accent-2 text-2xl font-semibold;
+		@apply text-2xl font-semibold;
+	}
+
+	.blinking-title {
+		@apply text-2xl font-semibold;
+		position: relative;
+	}
+
+	.blinking-title::after {
+		content: "█";
+		animation: blink 1s infinite;
+		margin-left: 0.1em;
+	}
+
+	@keyframes blink {
+		0%,
+		50% {
+			opacity: 1;
+		}
+		51%,
+		100% {
+			opacity: 0;
+		}
 	}
 
 	.admonition {
@@ -259,9 +262,143 @@
 	--tw-prose-bold: var(--color-global-text);
 	--tw-prose-bullets: var(--color-global-text);
 	--tw-prose-code: var(--color-global-text);
-	--tw-prose-headings: var(--color-accent-2);
+	--tw-prose-headings: var(--color-global-text);
 	--tw-prose-hr: 0.5px dashed #666;
 	--tw-prose-links: var(--color-global-text);
 	--tw-prose-quotes: var(--color-quote);
 	--tw-prose-th-borders: #666;
+}
+
+/* Blog post prose links - thicker underlines */
+.prose a {
+	text-decoration-thickness: 3px;
+}
+
+/* Inline code block styling */
+.prose code:not(pre code) {
+	background-color: var(--color-global-text);
+	color: var(--color-global-bg);
+	padding: 0.125rem 0.25rem;
+	border-radius: 2px;
+	font-weight: bold;
+}
+
+/* Link hover block highlight */
+a:hover {
+	background-color: var(--color-global-text) !important;
+	color: var(--color-global-bg) !important;
+	padding: 0.125rem 0.25rem;
+	border-radius: 2px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* Header navigation links - only underline on hover, no block highlight */
+.no-highlight:hover {
+	background-color: transparent !important;
+	color: inherit !important;
+	padding: 0 !important;
+	border-radius: 0 !important;
+	font-weight: inherit !important;
+	text-decoration: underline !important;
+}
+
+/* Code block styling - match note section design */
+figure[data-rehype-pretty-code-figure] pre:not(.no-border),
+.expressive-code pre:not(.no-border),
+.astro-code:not(.no-border),
+pre:not(.no-border) {
+	background: var(--color-global-bg) !important;
+	border: 1px solid var(--color-global-text);
+	border-opacity: 0.3;
+	border-radius: 4px;
+}
+
+/* No border styling for ASCII art and similar */
+.no-border {
+	background: transparent !important;
+	border: none !important;
+}
+
+/* Blog post styling for homepage */
+.blog-post-card {
+	transition: transform 0.3s ease;
+	margin-bottom: 4rem;
+}
+
+.blog-post-card:hover {
+	transform: translateY(-3px);
+}
+
+.blog-post-image {
+	aspect-ratio: 16/9;
+	object-fit: cover;
+	width: 100%;
+	border: 1px solid #333;
+}
+
+.blog-post-placeholder {
+	background-color: #111;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	aspect-ratio: 16/9;
+	font-size: 4rem;
+	font-weight: bold;
+	color: #333;
+	border: 1px solid #333;
+}
+
+.blog-post-title {
+	font-size: 1.5rem;
+	margin-bottom: 0.25rem;
+	transition: color 0.2s ease;
+	font-weight: normal;
+}
+
+.blog-post-title:hover {
+	color: var(--color-accent);
+	text-decoration: none;
+	background-color: transparent !important;
+	padding: 0 !important;
+}
+
+.blog-post-date {
+	font-size: 0.875rem;
+	color: #666;
+	margin-bottom: 0.5rem;
+	display: block;
+}
+
+.blog-post-description {
+	margin-bottom: 1.5rem;
+	line-height: 1.5;
+	color: var(--color-global-text);
+	font-size: 1rem;
+}
+
+.blog-post-read-more {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	border: 1px solid #333;
+	transition: all 0.2s ease;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.blog-post-read-more:hover {
+	background-color: var(--color-global-text) !important;
+	color: var(--color-global-bg) !important;
+	border-color: var(--color-global-text);
+	text-decoration: none;
+}
+
+/* Ensure code block content uses proper text color */
+figure[data-rehype-pretty-code-figure] pre code,
+.expressive-code pre code,
+.astro-code code,
+pre code {
+	color: var(--color-global-text) !important;
 }

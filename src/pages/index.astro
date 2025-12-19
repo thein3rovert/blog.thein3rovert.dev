@@ -1,11 +1,11 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import SocialList from "@/components/SocialList.astro";
-import PostPreview from "@/components/blog/PostPreview.astro";
 // import Note from "@/components/note/Note.astro";
 import { getAllPosts } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
+import BlogPostCard from "@/components/blog/BlogPostCard.astro";
 
 // Posts
 const MAX_POSTS = 10; // Changing the noof post in the frontend
@@ -21,41 +21,56 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 ---
 
 <PageLayout meta={{ title: "Home" }}>
-  <!-- Introduction Section -->
-  <section class="px-1 sm:p-4 mb-8">
-		<h2 class="title mb-6">HI, I'M SAMAD.</h2>
+	<!-- Introduction Section -->
+	<section class="mb-4 px-1 sm:p-4">
+		<h2 class="blinking-title mb-6">HI, I'M SAMAD.</h2>
 		<p class="mb-4 text-base">
 			Coder, cyclist, hiker, mini-PC enthusiast, soon-to-be long-haul homelaber, GNU/Linux guy, and
 			mid-tier keyboard snob. I use Nix, btw.
 		</p>
 		<SocialList />
-		<hr class="">
-		<h2 class="title mb-6 pt-6">CONTACT</h2>
-		<p class="text-base">
-    <!-- Add glance homepage when ready -->
-		<!-- <a href="https://linkding.thein3rovert.dev">thein3rovert.dev</a> -->
-		<a href="mailto:danielolaibi@gmail.com">thein3rovert@gmail.com</a>
-		</p>
 	</section>
 
-  <!--Post section -->
-	<section class="mt-4 px-1 sm:p-4" aria-label="Blog Posts">
-    <h2 class="title text-accent mb-4 text-xl text-center">
-      <a href="/blog/">recent</a>
-    </h2>
-    <ul class=" text-white-500 font-mono space-y-1 text-base" role="list">
-      {
-      allPostsByDate.map((p) => (
-      <li class="flex items-start">
-      <span class="pr-2 select-none">$</span>
-      <PostPreview post={p} />
-      </li>
-      ))
-      }
-    </ul>
+  <!-- Journal Section -->
+	<section class="px-1 sm:p-4" aria-label="Journal">
+    <h2 class="blinking-title mb-6">JOURNAL</h2>
+
+    <div class="font-mono text-[4px] xs:text-[6px] sm:text-xs md:text-sm mb-6">
+      <pre class="no-border whitespace-pre text-[4px] xs:text-[6px] sm:text-xs md:text-sm leading-tight">
+████████ ██   ██ ███████ ██ ███    ██ ██████  ██████   ██████  ██    ██ ███████ ██████  ████████
+   ██    ██   ██ ██      ██ ████   ██      ██ ██   ██ ██    ██ ██    ██ ██      ██   ██    ██
+   ██    ███████ █████   ██ ██ ██  ██  █████  ██████  ██    ██ ██    ██ █████   ██████     ██
+   ██    ██   ██ ██      ██ ██  ██ ██      ██ ██   ██ ██    ██  ██  ██  ██      ██   ██    ██
+   ██    ██   ██ ███████ ██ ██   ████ ██████  ██   ██  ██████    ████   ███████ ██   ██    ██
+      </pre>
+    </div>
+
+    <div class="text-base leading-relaxed mb-4">
+      <pre class="mb-4 whitespace-pre no-border text-left">
+"Our lives are so full of activity
+and chatter it's difficult to find quite time...
+Those are the moments that are the most creative
+for me. The location is less important than
+the choice to turn other things off.
+Because I find that the quitest
+times of my life speak
+the loudest".
+      </pre>
+      <p class="text-sm italic text-gray-600">
+        - Quite, Susan Cain;
+      </p>
+    </div>
 	</section>
+
+  <!-- Blog Posts Section -->
+  <!-- <section class="mt-16 px-1 sm:p-4">
+    <h2 class="blinking-title mb-8">POSTS</h2>
+    {allPostsByDate.map((post) => (
+      <BlogPostCard post={post} />
+    ))}
+  </section> -->
+
 	{
-	// I dont want to have the note in the homepage
 		latestNotes.length > 0 && (
 			<!-- <section class="mt-16">
 				<h2 class="title text-accent mb-6 text-xl">

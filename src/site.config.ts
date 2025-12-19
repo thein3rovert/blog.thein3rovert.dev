@@ -48,10 +48,10 @@ export const menuLinks: Array<{ path: string; title: string }> = [
 		path: "/notes/",
 		title: "Notes",
 	},
-	{
-		path: "/code/",
-		title: "Code",
-	},
+	// {
+	// 	path: "/code/",
+	// 	title: "Code",
+	// },
 ];
 
 // Social media links for the site

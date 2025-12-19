@@ -1,7 +1,9 @@
 ---
-title: Fixing issue with colmena blog
+title: Issue with Colmena
 description: Resolving Colmena integration issues with Nix flakes by correctly configuring inputs and addressing infinite recursion errors
 publishDate: "2025-07-21T10:55:00Z"
+tags: ["nixos", "deployment"]
+updatedDate: 23 Nov 2025
 ---
 
 So, I’ve been having this issue with Colmena. I added the Colmena input to my `flake.nix` for my system and also exposed it as an output so both my flake and NixOS can make use of it. But here’s the problem—it’s not visible to my system. When I try to use it, it’s just not there.
@@ -204,7 +206,3 @@ INFO ] Selected all 1 nodes.
 - **Read the Docs Thoroughly**: I would double-check the latest Colmena documentation before diving into implementation.
 - **Test Incrementally**: Instead of adding everything at once, I’d test each part of the configuration step-by-step to catch issues early.
 - **Avoid Legacy Methods**: While using `nix-shell` worked as a temporary fix, I’d aim to transition fully to the latest Colmena features and workflows.
-
----
-
-This has been quite the learning experience.  Hopefully, this write-up helps someone else who runs into similar issues!

@@ -44,16 +44,16 @@ if (content && data) {
 		filePath = "/home/thein3rovert";
 		fileSize = "16488 words";
 	} else if (currentPath.startsWith("/posts/") || currentPath.startsWith("/blog/")) {
-		filePath = "/home/thein3rovert/posts";
+		filePath = "~/posts";
 		fileSize = "12000 words";
 	} else if (currentPath.startsWith("/about")) {
-		filePath = "/home/thein3rovert/about";
+		filePath = "~/about";
 		fileSize = "800 words";
 	} else if (currentPath.startsWith("/notes")) {
-		filePath = "/home/thein3rovert/notes";
-		fileSize = "3500 words";
+		filePath = "~/notes";
+		fileSize = "500 words";
 	} else if (currentPath.startsWith("/code")) {
-		filePath = "/home/thein3rovert/code";
+		filePath = "~/code";
 		fileSize = "2000 words";
 	} else {
 		filePath = "/home/thein3rovert/posts";
@@ -65,7 +65,7 @@ if (content && data) {
 }
 ---
 
-<header class="bg-global-bg mb-8 w-full font-mono text-xs" id="main-header">
+<header class="bg-global-bg mb-8 w-full font-mono text-[13px]" id="main-header">
 	<div class="mx-auto max-w-6xl px-4 py-2 sm:px-8">
 		<!-- Terminal file header -->
 		<div class="mb-2 space-y-0 leading-tight">
@@ -89,7 +89,7 @@ if (content && data) {
 					<span>
 						<a
 							href={link.path}
-							class={`hover:underline ${
+							class={`no-highlight hover:underline ${
 								currentPath === link.path ||
 								(link.path !== "/" && currentPath.startsWith(link.path))
 									? "text-accent font-bold"
@@ -114,7 +114,7 @@ if (content && data) {
 
 <style>
 	.font-mono {
-		font-family: "MonoLisa", ui-monospace, "Courier New", Courier, monospace;
+		font-family: "IoskeleyMono";
 		letter-spacing: 0;
 	}
 
@@ -123,8 +123,17 @@ if (content && data) {
 		text-decoration: none;
 	}
 
-	a:hover {
+	a:hover:not(.no-highlight) {
 		text-decoration: underline;
+	}
+
+	.no-highlight:hover {
+		background-color: transparent !important;
+		color: inherit !important;
+		padding: 0 !important;
+		border-radius: 0 !important;
+		font-weight: inherit !important;
+		text-decoration: underline !important;
 	}
 
 	/* Terminal header styling - full width at top */
