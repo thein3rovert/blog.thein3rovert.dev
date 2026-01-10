@@ -3,7 +3,7 @@ title: "Information consumption and Management"
 description: "My plan to consuming and managing information this year."
 publishDate: "01 January 2026"
 tags: ["personal", "productivity"]
-updatedDate :"09 January 2026"
+updatedDate: "09 January 2026"
 ---
 
 I started my morning creating my calendar for the weeks ahead this year. I used to avoid calendars, but they've been helping me keep my focus lately. I always had this fear of managing two calendars since I also use one for work that contains mainly work-related stuff. I can put personal events on the work calendar, but I want to give having separate ones a shot. It shouldn't be that draining to manage two calendars, and this personal one connects to my phone so I'll get reminders before any task occurs. This year I'm giving calendar notifications a real try to see how useful they can be for me.

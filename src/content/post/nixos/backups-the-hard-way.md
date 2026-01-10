@@ -3,7 +3,7 @@ title: "Backups the hard way"
 description: "My journey to taking backup seriously."
 publishDate: "08 January 2026"
 tags: ["personal", "productivity"]
-updatedDate :"08 January 2026"
+updatedDate: "08 January 2026"
 ---
 
 # Learning About Backups the Hard Way

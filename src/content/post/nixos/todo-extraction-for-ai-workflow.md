@@ -3,7 +3,7 @@ title: "Optimizing todo for AI workflow"
 description: "Optimizing my ticket creating workflow"
 publishDate: "27 December 2025"
 tags: ["ai", "automation"]
-updatedDate :"30 December 2025"
+updatedDate: "30 December 2025"
 ---
 
 I maintain a `now.txt.md` note in Obsidian where I capture all my daily ideas and tasks. I built an n8n workflow that reads this note and uses GitHub Copilot CLI to automatically create tickets from my TODOs. The problem was that I was sending the entire note every time, which sometimes contains hundreds of words of context that wasn't needed. This approach meant higher API costs and, worse, creating duplicate tickets when Copilot encountered the same tasks it had already processed.
