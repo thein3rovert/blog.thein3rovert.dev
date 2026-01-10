@@ -3,7 +3,7 @@ title: "LTSP network on Incus"
 description: "Setting up ltsp network on incus lxd journey"
 publishDate: "10 January 2026"
 tags: ["incus", "ltsp"]
-updatedDate :"08 January 2026"
+updatedDate: "08 January 2026"
 ---
 
 Today I woke up quite earlier than usual and couldn't go back to sleep, so I decided to work on something with the little time I had. I've been putting off this project for a while now because I pretend that I don't have the time, haha.
