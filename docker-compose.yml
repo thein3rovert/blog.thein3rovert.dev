@@ -13,6 +13,7 @@ services:
       - traefik_proxy
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=traefik_proxy"
       - "traefik.http.routers.astro-app.rule=Host(`blog.thein3rovert.dev`)"
       - "traefik.http.routers.astro-app.entrypoints=websecure"
       - "traefik.http.routers.astro-app.tls=true"
