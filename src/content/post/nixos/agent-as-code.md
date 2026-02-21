@@ -24,7 +24,7 @@ But here's the problem: what good are all those notes if they just sit there? I 
 
 ## The Real Problem: Too Many Tools
 
-There are so many AI tools now. Claude Code. Gemini CLI. Opencode. Copilot. Every week something new drops. And each one has its own context folder—`.claude/`, `.copilot/`, `.gemini/`, etc. Rules for this tool, references for that one, commands scattered everywhere.
+There are so many AI tools now. Claude Code. Gemini CLI. Opencode. Copilot. Every week something new drops. And each one has its own context folder..`.claude/`, `.copilot/`, `.gemini/`, etc. Rules for this tool, references for that one, commands scattered everywhere.
 
 ```
 rwxr-xr-x    - thein3rovert 19 Feb 21:59  .claude
@@ -52,7 +52,7 @@ You might wonder: why not just use a shared folder and symlinks? Why bring Nix i
 
 Fair question. Here's my answer:
 
-I already manage my entire dotfiles and system configuration with Nix. My [nixos-config](https://github.com/thein3rovert/nixos-config) handles everything—my terminals, my editors, my development environments, my dotfiles. When I rebuild, my entire setup is reproducible from a single `git clone && nixos-rebuild switch`.
+I already manage my entire dotfiles and system configuration with Nix. My [nixos-config](https://github.com/thein3rovert/nixos-config) handles everything..my terminals, my editors, my development environments, my dotfiles. When I rebuild, my entire setup is reproducible from a single `git clone && nixos-rebuild switch`.
 
 So when I thought about managing my AI agent configs, the answer was obvious: do it the same way I do everything else. Home-manager already handles XDG config directories. My agent resources are just more files. Why would I maintain them separately?
 
@@ -73,11 +73,11 @@ And when I get a new machine? The flake pulls down, I run `home-manager switch`,
 
 I've built out agents with distinct personalities. The main ones:
 
-**Arkadia** — Named after the sanctuary built from the Alpha Station in _The 100_ (yes, I'm a fan). It's my personal assistant in "Plan Mode." Read-only analysis, planning, guidance. It knows my context: software engineer, PARA methodology, early mornings for deep work, evening daily reviews. It routes requests to the right skills and stays out of the way.
+**Arkadia**: Named after the sanctuary built from the Alpha Station in _The 100_ (yes, I'm a fan). It's my personal assistant in "Plan Mode." Read-only analysis, planning, guidance. It knows my context: software engineer, PARA methodology, early mornings for deep work, evening daily reviews. It routes requests to the right skills and stays out of the way.
 
-**Arkadia-Forge** — Same assistant but in "Worker Mode." Full write access, but with safety prompts for destructive operations. This is the one I use when I actually want to get things done, not just plan them.
+**Arkadia-Forge**: Same assistant but in "Worker Mode." Full write access, but with safety prompts for destructive operations. This is the one I use when I actually want to get things done, not just plan them.
 
-Then there are others—Prometheus for orchestration, Hephaestus for building, Sisyphus for running commands (heavily restricted for safety), Librarian and Explore for research. These are built-in agents that came with the opencode installation, but I barely use them because they aren't really tailored to my personal workflow and needs.
+Then there are others..Prometheus for orchestration, Hephaestus for building, Sisyphus for running commands (heavily restricted for safety), Librarian and Explore for research. These are built-in agents that came with the opencode installation, but I barely use them because they aren't really tailored to my personal workflow and needs.
 
 I would always suggest creating agents that suit your needs. You alone know why you do on a daily basis to accomplish a task, how you achieve a task to the best of your ability, so why not train your agent to do the same and refine as much as you want until you reach a desired state.
 
@@ -127,7 +127,7 @@ I'll be honest...this setup isn't perfect.
 
 Agent configurations are embedded into opencode's config.json at Nix evaluation time. That means when I change an agent definition, I need to rebuild for it to take effect. Skills and commands are symlinked, so changes appear immediately, but it's still a compromise.
 
-But here's what I've learned: treating my AI workflows as code—modular, versioned, declarative—has made them more maintainable. When I improve a skill or write a new command, I do it once and every agent immediately has access, so I don't have to copy prompts between tools or wonder where I put that reference.
+But here's what I've learned: treating my AI workflows as code..modular, versioned, declarative..has made them more maintainable. When I improve a skill or write a new command, I do it once and every agent immediately has access, so I don't have to copy prompts between tools or wonder where I put that reference.
 
 ## The Honest Take
 
