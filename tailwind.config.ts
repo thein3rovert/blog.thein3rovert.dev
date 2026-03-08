@@ -59,7 +59,8 @@ export default {
 							},
 						},
 						hr: {
-							borderTopStyle: "dashed",
+							borderTopStyle: "solid",
+							maxWidth: "200px",
 						},
 						strong: {
 							fontWeight: "700",

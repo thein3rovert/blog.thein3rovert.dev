@@ -45,8 +45,8 @@ export const menuLinks: Array<{ path: string; title: string }> = [
 		title: "Blog",
 	},
 	{
-		path: "/notes/",
-		title: "Notes",
+		path: "/now/",
+		title: "Now",
 	},
 	// {
 	// 	path: "/code/",
@@ -59,6 +59,7 @@ export const socialLinks = {
 	github: "https://github.com/thein3rovert",
 	linkedin: "https://www.linkedin.com/in/samad-olaibi/",
 	threads: "https://threads.net/thein3rovert",
+	instagram: "https://instagram.com/thein3rovert",
 	website: "/",
 } as const;
 

@@ -28,6 +28,7 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               nodejs # Make dynamic later
+              nodePackages.pnpm
               biome
               podman-compose
             ];

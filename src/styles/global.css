@@ -117,16 +117,8 @@
 	html {
 		color-scheme: light dark;
 		accent-color: var(--color-accent);
-
-		&[data-theme="light"] {
-			color-scheme: light;
-			--color-global-bg: oklch(0.95 0.0074 84.93);
-			--color-global-text: oklch(0.2768 0 0); /*grey: 282828*/
-			--color-link: oklch(0.6217 0.1707 45.81); /*orange: d65d0e*/
-			--color-accent: oklch(0.5756 0.0658 199.49); /* Dimeblue: #83a598 or Bight Blue: #458588*/
-			--color-accent-2: oklch(0.4706 0.0816 215.81); /* Dimeblue: #83a598  */
-			--color-quote: oklch(0.7652 0.1581 110.83); /* green: b8bb26 */
-		}
+		overflow-x: hidden;
+		scrollbar-width: none;
 
 		&[data-theme="dark"] {
 			color-scheme: dark;
@@ -138,6 +130,32 @@
 			--color-accent-2: oklch(0.6927 0.042 169.77); /* Dimeblue: #83a598  */
 			--color-quote: oklch(0.7652 0.1581 110.83); /* green: b8bb26 */
 		}
+
+		/* Good Enough (dark) */
+		&[data-theme="good-enough"] {
+			color-scheme: dark;
+			--color-global-bg: #2b2b2b; /* Warm dark gray */
+			--color-global-text: #c8c2b6; /* Warm cream */
+			--color-link: #c8c2b6; /* Same as text, underline-driven */
+			--color-accent: #7a9a8a; /* Muted sage/teal */
+			--color-accent-2: #a89070; /* Warm brown */
+			--color-quote: #7a9a8a; /* Sage green */
+		}
+
+		/* One Dark */
+		&[data-theme="one-dark"] {
+			color-scheme: dark;
+			--color-global-bg: #282c34; /* Background */
+			--color-global-text: #abb2bf; /* Foreground */
+			--color-link: #61afef; /* Blue */
+			--color-accent: #56b6c2; /* Cyan */
+			--color-accent-2: #c678dd; /* Magenta */
+			--color-quote: #98c379; /* Green */
+		}
+	}
+
+	body {
+		overflow-x: hidden;
 	}
 
 	:target {
@@ -146,6 +164,16 @@
 
 	@view-transition {
 		navigation: auto;
+	}
+
+	/* Prevent white flash during page transitions */
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.15s;
+	}
+
+	::view-transition-group(root) {
+		animation-duration: 0.15s;
 	}
 }
 
@@ -160,7 +188,8 @@
 	}
 
 	hr {
-		@apply border-t border-gray-600 opacity-30;
+		@apply border-t border-gray-600 opacity-50;
+		max-width: 200px;
 	}
 
 	.title {
@@ -263,7 +292,7 @@
 	--tw-prose-bullets: var(--color-global-text);
 	--tw-prose-code: var(--color-global-text);
 	--tw-prose-headings: var(--color-global-text);
-	--tw-prose-hr: 0.5px dashed #666;
+	--tw-prose-hr: 1px solid #444;
 	--tw-prose-links: var(--color-global-text);
 	--tw-prose-quotes: var(--color-quote);
 	--tw-prose-th-borders: #666;
