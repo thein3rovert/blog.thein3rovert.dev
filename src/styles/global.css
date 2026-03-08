@@ -188,7 +188,8 @@
 	}
 
 	hr {
-		@apply border-t border-gray-600 opacity-30;
+		@apply border-t border-gray-600 opacity-50;
+		max-width: 200px;
 	}
 
 	.title {
@@ -291,7 +292,7 @@
 	--tw-prose-bullets: var(--color-global-text);
 	--tw-prose-code: var(--color-global-text);
 	--tw-prose-headings: var(--color-global-text);
-	--tw-prose-hr: 0.5px dashed #666;
+	--tw-prose-hr: 1px solid #444;
 	--tw-prose-links: var(--color-global-text);
 	--tw-prose-quotes: var(--color-quote);
 	--tw-prose-th-borders: #666;
