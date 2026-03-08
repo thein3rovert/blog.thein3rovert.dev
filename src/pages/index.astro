@@ -35,8 +35,9 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 	<section aria-label="Journal">
     <h2 class="blinking-title mb-6">JOURNAL</h2>
 
-    <div class="font-mono mb-6 max-w-full overflow-hidden">
-      <pre class="no-border whitespace-pre text-[clamp(4px,1.8vw,14px)] leading-tight">
+    <!-- ASCII art: scales to fit any screen -->
+    <div class="ascii-banner font-mono mb-6">
+      <pre class="no-border whitespace-pre leading-tight">
 ████████ ██   ██ ███████ ██ ███    ██ ██████  ██████   ██████  ██    ██ ███████ ██████  ████████
    ██    ██   ██ ██      ██ ████   ██      ██ ██   ██ ██    ██ ██    ██ ██      ██   ██    ██
    ██    ███████ █████   ██ ██ ██  ██  █████  ██████  ██    ██ ██    ██ █████   ██████     ██
@@ -88,3 +89,43 @@ the loudest".
 		)
 	}
 </PageLayout>
+
+<style>
+	.ascii-banner {
+		width: 100%;
+		overflow: hidden;
+	}
+	.ascii-banner pre {
+		font-size: 14px;
+		display: inline-block;
+		transform-origin: top left;
+		/* Scale the pre to fit the container width */
+		scale: var(--ascii-scale, 1);
+	}
+</style>
+
+<script>
+	function scaleAscii() {
+		const banner = document.querySelector('.ascii-banner');
+		const pre = banner?.querySelector('pre');
+		if (!banner || !pre) return;
+
+		// Reset scale to measure natural width
+		pre.style.setProperty('--ascii-scale', '1');
+		const naturalWidth = pre.scrollWidth;
+		const containerWidth = banner.clientWidth;
+
+		if (naturalWidth > containerWidth) {
+			const scale = containerWidth / naturalWidth;
+			banner.style.setProperty('height', (pre.scrollHeight * scale) + 'px');
+			pre.style.setProperty('--ascii-scale', String(scale));
+		} else {
+			banner.style.removeProperty('height');
+			pre.style.setProperty('--ascii-scale', '1');
+		}
+	}
+
+	scaleAscii();
+	window.addEventListener('resize', scaleAscii);
+	document.addEventListener('astro:page-load', scaleAscii);
+</script>
