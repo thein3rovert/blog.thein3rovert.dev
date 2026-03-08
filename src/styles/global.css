@@ -117,6 +117,8 @@
 	html {
 		color-scheme: light dark;
 		accent-color: var(--color-accent);
+		overflow-x: hidden;
+		scrollbar-width: none;
 
 		&[data-theme="light"] {
 			color-scheme: light;
@@ -140,12 +142,26 @@
 		}
 	}
 
+	body {
+		overflow-x: hidden;
+	}
+
 	:target {
 		scroll-margin-block: 5ex;
 	}
 
 	@view-transition {
 		navigation: auto;
+	}
+
+	/* Prevent white flash during page transitions */
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.15s;
+	}
+
+	::view-transition-group(root) {
+		animation-duration: 0.15s;
 	}
 }
 

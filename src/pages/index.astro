@@ -22,7 +22,7 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 
 <PageLayout meta={{ title: "Home" }}>
 	<!-- Introduction Section -->
-	<section class="mb-4 px-1 sm:p-4">
+	<section class="mb-4">
 		<h2 class="blinking-title mb-6">HI, I'M SAMAD.</h2>
 		<p class="mb-4 text-base">
 			Coder, cyclist, hiker, mini-PC enthusiast, soon-to-be long-haul homelaber, GNU/Linux guy, and
@@ -32,11 +32,11 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 	</section>
 
   <!-- Journal Section -->
-	<section class="px-1 sm:p-4" aria-label="Journal">
+	<section aria-label="Journal">
     <h2 class="blinking-title mb-6">JOURNAL</h2>
 
-    <div class="font-mono text-[4px] xs:text-[6px] sm:text-xs md:text-sm mb-6">
-      <pre class="no-border whitespace-pre text-[4px] xs:text-[6px] sm:text-xs md:text-sm leading-tight">
+    <div class="font-mono mb-6 max-w-full overflow-hidden">
+      <pre class="no-border whitespace-pre text-[clamp(4px,1.8vw,14px)] leading-tight">
 ████████ ██   ██ ███████ ██ ███    ██ ██████  ██████   ██████  ██    ██ ███████ ██████  ████████
    ██    ██   ██ ██      ██ ████   ██      ██ ██   ██ ██    ██ ██    ██ ██      ██   ██    ██
    ██    ███████ █████   ██ ██ ██  ██  █████  ██████  ██    ██ ██    ██ █████   ██████     ██
@@ -46,7 +46,7 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
     </div>
 
     <div class="text-base leading-relaxed mb-4">
-      <pre class="mb-4 whitespace-pre no-border text-left">
+      <pre class="mb-4 whitespace-pre-wrap no-border text-left">
 "Our lives are so full of activity
 and chatter it's difficult to find quite time...
 Those are the moments that are the most creative
