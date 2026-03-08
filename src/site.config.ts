@@ -48,6 +48,10 @@ export const menuLinks: Array<{ path: string; title: string }> = [
 		path: "/notes/",
 		title: "Notes",
 	},
+	{
+		path: "/now/",
+		title: "Now",
+	},
 	// {
 	// 	path: "/code/",
 	// 	title: "Code",

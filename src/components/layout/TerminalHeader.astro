@@ -52,6 +52,9 @@ if (content && data) {
 	} else if (currentPath.startsWith("/notes")) {
 		filePath = "~/notes";
 		fileSize = "500 words";
+	} else if (currentPath.startsWith("/now")) {
+		filePath = "~/now";
+		fileSize = "200 words";
 	} else if (currentPath.startsWith("/code")) {
 		filePath = "~/code";
 		fileSize = "2000 words";
