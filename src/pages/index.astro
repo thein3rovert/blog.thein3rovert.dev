@@ -1,7 +1,6 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import SocialList from "@/components/SocialList.astro";
-// import Note from "@/components/note/Note.astro";
 import { getAllPosts } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
@@ -13,11 +12,6 @@ const allPosts = await getAllPosts();
 const allPostsByDate = allPosts
 	.sort(collectionDateSort)
 	.slice(0, MAX_POSTS) as CollectionEntry<"post">[];
-
-// Notes
-const MAX_NOTES = 5;
-const allNotes = await getCollection("note");
-const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 ---
 
 <PageLayout meta={{ title: "Home" }}>
@@ -71,23 +65,6 @@ the loudest".
     ))}
   </section> -->
 
-	{
-		latestNotes.length > 0 && (
-			<!-- <section class="mt-16">
-				<h2 class="title text-accent mb-6 text-xl">
-					<a href="/notes/">Notes</a>
-				</h2>
-        <ul class="bg-black text-green-500 font-mono p-4 rounded-lg shadow-lg space-y-2" role="list" style="border: 2px solid #222;">
-          {latestNotes.map((note, idx) => (
-            <li class="flex items-start">
-              <span class="pr-2 select-none">$ {idx + 1}</span>
-              <Note note={note} as="h3" isPreview />
-            </li>
-          ))}
-        </ul>
-			</section> -->
-		)
-	}
 </PageLayout>
 
 <style>
