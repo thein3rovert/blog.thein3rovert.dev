@@ -104,9 +104,12 @@ if (content && data) {
 				))
 			}
 			<div class="ml-auto">
-				<div class="scale-75 text-xs">
-					<!-- <ThemeToggle /> -->
-				</div>
+				<button
+					id="theme-cycle-btn"
+					class="no-highlight text-accent cursor-pointer font-mono text-[13px] hover:underline"
+					type="button"
+					title="Cycle theme"
+				>[theme]</button>
 			</div>
 		</div>
 	</div>
@@ -153,3 +156,35 @@ if (content && data) {
 		background: rgba(255, 255, 255, 0.9);
 	}
 </style>
+
+<script is:inline>
+	const THEME_LABELS = {
+		"dark": "gruvbox",
+		"good-enough": "good-enough",
+		"one-dark": "one-dark",
+	};
+
+	function updateBtn() {
+		const btn = document.getElementById("theme-cycle-btn");
+		if (!btn) return;
+		const current = document.documentElement.getAttribute("data-theme") || "dark";
+		btn.textContent = "[" + (THEME_LABELS[current] || current) + "]";
+	}
+
+	function initThemeBtn() {
+		const btn = document.getElementById("theme-cycle-btn");
+		if (!btn) return;
+		btn.addEventListener("click", () => {
+			if (window.__cycleTheme && window.__setTheme) {
+				const next = window.__cycleTheme();
+				window.__setTheme(next);
+				updateBtn();
+			}
+		});
+		updateBtn();
+	}
+
+	initThemeBtn();
+	document.addEventListener("astro:page-load", initThemeBtn);
+	document.addEventListener("pagereveal", updateBtn);
+</script>

@@ -1,16 +1,17 @@
 {/* Inlined to avoid FOUC. This is a parser blocking script. */}
 <script is:inline>
+	const THEMES = ["dark", "good-enough", "one-dark"];
 	const lightModePref = window.matchMedia("(prefers-color-scheme: light)");
 
 	function getUserPref() {
 		const storedTheme = typeof localStorage !== "undefined" && localStorage.getItem("theme");
-		return storedTheme || (lightModePref.matches ? "light" : "dark");
+		return storedTheme || "dark";
 	}
 
 	function setTheme(newTheme) {
-		if (newTheme !== "light" && newTheme !== "dark") {
+		if (!THEMES.includes(newTheme)) {
 			return console.warn(
-				`Invalid theme value '${newTheme}' received. Expected 'light' or 'dark'.`,
+				`Invalid theme value '${newTheme}' received. Expected one of: ${THEMES.join(", ")}.`,
 			);
 		}
 
@@ -28,6 +29,17 @@
 		}
 	}
 
+	function cycleTheme() {
+		const current = document.documentElement.getAttribute("data-theme") || "dark";
+		const idx = THEMES.indexOf(current);
+		const next = THEMES[(idx + 1) % THEMES.length];
+		return next;
+	}
+
+	// Expose cycleTheme globally so the toggle can use it
+	window.__cycleTheme = cycleTheme;
+	window.__setTheme = setTheme;
+
 	// initial setup
 	setTheme(getUserPref());
 
@@ -37,7 +49,7 @@
 	// Native CSS View Transitions (cross-document) hook to restore theme immediately
 	document.addEventListener("pagereveal", () => setTheme(getUserPref()));
 
-	// listen for theme-change custom event, fired in src/components/ThemeToggle.astro
+	// listen for theme-change custom event
 	document.addEventListener("theme-change", (e) => {
 		setTheme(e.detail.theme);
 	});
