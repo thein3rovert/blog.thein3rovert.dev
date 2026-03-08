@@ -25,23 +25,25 @@ const allPostsByDate = allPosts
 		<SocialList />
 	</section>
 
-  <!-- Journal Section -->
+	<!-- Journal Section -->
 	<section aria-label="Journal">
-    <h2 class="blinking-title mb-6">JOURNAL</h2>
+		<h2 class="blinking-title mb-6">JOURNAL</h2>
 
-    <!-- ASCII art: scales to fit any screen -->
-    <div class="ascii-banner font-mono mb-6">
-      <pre class="no-border whitespace-pre leading-tight">
+		<!-- ASCII art: scales to fit any screen -->
+		<div class="ascii-banner mb-6 font-mono">
+			<pre
+				class="no-border leading-tight whitespace-pre">
 ████████ ██   ██ ███████ ██ ███    ██ ██████  ██████   ██████  ██    ██ ███████ ██████  ████████
    ██    ██   ██ ██      ██ ████   ██      ██ ██   ██ ██    ██ ██    ██ ██      ██   ██    ██
    ██    ███████ █████   ██ ██ ██  ██  █████  ██████  ██    ██ ██    ██ █████   ██████     ██
    ██    ██   ██ ██      ██ ██  ██ ██      ██ ██   ██ ██    ██  ██  ██  ██      ██   ██    ██
    ██    ██   ██ ███████ ██ ██   ████ ██████  ██   ██  ██████    ████   ███████ ██   ██    ██
       </pre>
-    </div>
+		</div>
 
-    <div class="text-base leading-relaxed mb-4">
-      <pre class="mb-4 whitespace-pre-wrap no-border text-left">
+		<div class="mb-4 text-base leading-relaxed">
+			<pre
+				class="no-border mb-4 text-left whitespace-pre-wrap">
 "Our lives are so full of activity
 and chatter it's difficult to find quite time...
 Those are the moments that are the most creative
@@ -51,20 +53,17 @@ Because I find that the quitest
 times of my life speak
 the loudest".
       </pre>
-      <p class="text-sm italic text-gray-600">
-        - Quite, Susan Cain;
-      </p>
-    </div>
+			<p class="text-sm text-gray-600 italic">- Quite, Susan Cain;</p>
+		</div>
 	</section>
 
-  <!-- Blog Posts Section -->
-  <!-- <section class="mt-16 px-1 sm:p-4">
+	<!-- Blog Posts Section -->
+	<!-- <section class="mt-16 px-1 sm:p-4">
     <h2 class="blinking-title mb-8">POSTS</h2>
     {allPostsByDate.map((post) => (
       <BlogPostCard post={post} />
     ))}
   </section> -->
-
 </PageLayout>
 
 <style>
@@ -83,26 +82,26 @@ the loudest".
 
 <script>
 	function scaleAscii() {
-		const banner = document.querySelector('.ascii-banner');
-		const pre = banner?.querySelector('pre');
+		const banner = document.querySelector(".ascii-banner");
+		const pre = banner?.querySelector("pre");
 		if (!banner || !pre) return;
 
 		// Reset scale to measure natural width
-		pre.style.setProperty('--ascii-scale', '1');
+		pre.style.setProperty("--ascii-scale", "1");
 		const naturalWidth = pre.scrollWidth;
 		const containerWidth = banner.clientWidth;
 
 		if (naturalWidth > containerWidth) {
 			const scale = containerWidth / naturalWidth;
-			banner.style.setProperty('height', (pre.scrollHeight * scale) + 'px');
-			pre.style.setProperty('--ascii-scale', String(scale));
+			banner.style.setProperty("height", pre.scrollHeight * scale + "px");
+			pre.style.setProperty("--ascii-scale", String(scale));
 		} else {
-			banner.style.removeProperty('height');
-			pre.style.setProperty('--ascii-scale', '1');
+			banner.style.removeProperty("height");
+			pre.style.setProperty("--ascii-scale", "1");
 		}
 	}
 
 	scaleAscii();
-	window.addEventListener('resize', scaleAscii);
-	document.addEventListener('astro:page-load', scaleAscii);
+	window.addEventListener("resize", scaleAscii);
+	document.addEventListener("astro:page-load", scaleAscii);
 </script>
