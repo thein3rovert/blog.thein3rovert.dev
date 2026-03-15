@@ -6,6 +6,8 @@ tags: ["personal", "productivity"]
 updatedDate: "08 January 2026"
 ---
 
+![alt text](./images/backup-the-hard-way.png)
+
 # Learning About Backups the Hard Way
 
 Backups were never really something that I took seriously. I don't know why... maybe it's because I'd never really experienced a system failure before, or maybe because when I did, I eventually didn't end up losing that much data. I just relied on my system as long as it looked clean and things were running pretty well. I assumed that no unfortunate event would cause my laptop to get destroyed or something. That mindset changed pretty quickly.
