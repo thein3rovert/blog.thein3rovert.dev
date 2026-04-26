@@ -1,8 +1,9 @@
 ---
 title: "i miss the days when ..."
 description: "On simpler times, mental bandwidth, and building LifeOS"
-publishDate: "26 april 2026"
+publishDate: "26 April 2026"
 tags: ["life","productivity","lifeos"]
+updatedDate: "26 April 2026"
 ---
 
 I miss when learning felt simple. Writing a basic "hello world" used to be enough to make the whole day feel productive. Even if I didn't build much, it still felt complete in a way that's hard to describe now.
