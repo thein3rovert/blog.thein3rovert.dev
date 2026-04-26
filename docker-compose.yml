@@ -6,13 +6,14 @@ services:
     image: ${IMAGE_NAME}:latest
     container_name: ${CONTAINER_NAME}
     ports:
-      - "8080:3001"  # TODO: Remember to change 3001 to 80
+      - "8080:80"  # TODO: Remember to change 3001 to 80
     restart: unless-stopped
     networks:
       - local
       - traefik_proxy
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=traefik_proxy"
       - "traefik.http.routers.astro-app.rule=Host(`blog.thein3rovert.dev`)"
       - "traefik.http.routers.astro-app.entrypoints=websecure"
       - "traefik.http.routers.astro-app.tls=true"

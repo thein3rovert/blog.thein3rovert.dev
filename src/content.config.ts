@@ -36,20 +36,4 @@ const post = defineCollection({
     }),
 });
 
-// Configure for markdown blog note
-const note = defineCollection({
-  // Configure loader to find markdown and MDX files in the specified directory
-  loader: glob({ base: "./src/content/note", pattern: "**/*.{md,mdx}" }),
-  schema: baseSchema.extend({
-    // Optional description field for notes
-    description: z.string().optional(),
-    publishDate: z
-      .string()
-      // Enforce ISO 8601 date string format, allowing for time zone offsets
-      .datetime({ offset: true })
-      // Transform the validated date string into a JavaScript Date object
-      .transform((val) => new Date(val)),
-  }),
-});
-
-export const collections = { post, note };
+export const collections = { post };

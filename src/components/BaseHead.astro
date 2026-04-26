@@ -18,11 +18,10 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
 <title>{siteTitle}</title>
 
-{/* Icons & Manifest */}
-<link href="/icon.svg" rel="icon" type="image/svg+xml" />
-<link href="/favicon-32x32.png" rel="icon" type="image/png" />
-<link href="/icons/apple-touch-icon.png" rel="apple-touch-icon" />
-<link href="/manifest.webmanifest" rel="manifest" />
+{/* Icons */}
+<link href="/icon_1.svg" rel="icon" type="image/svg+xml" />
+<link href="/icon.png" rel="icon" type="image/png" />
+<link href="/icon.png" rel="apple-touch-icon" />
 {/* Canonical URL */}
 <link href={canonicalURL} rel="canonical" />
 
@@ -62,7 +61,6 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 
 {/* RSS auto-discovery */}
 <link href="/rss.xml" title="Blog" rel="alternate" type="application/rss+xml" />
-<link href="/notes/rss.xml" title="Notes" rel="alternate" type="application/rss+xml" />
 
 {/* Webmentions - Uncomment and configure if needed */}
 <!-- <link href="YOUR_WEBMENTION_URL" rel="webmention" />
