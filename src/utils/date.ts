@@ -28,8 +28,8 @@ export function getFormattedDate(
  * @returns Comparison result for sorting
  */
 export function collectionDateSort(
-	a: CollectionEntry<"post" | "note">,
-	b: CollectionEntry<"post" | "note">,
+	a: CollectionEntry<"post">,
+	b: CollectionEntry<"post">,
 ): number {
 	return b.data.publishDate.getTime() - a.data.publishDate.getTime();
 }
