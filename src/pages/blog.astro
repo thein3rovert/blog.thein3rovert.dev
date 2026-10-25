@@ -49,7 +49,7 @@ const meta = {
 	<div class="terminal-listing -mx-4 w-full sm:-mx-8">
 		{
 			postsWithMetadata.map(({ post, wordCount, formattedDate, title }) => (
-				<div class="terminal-row font-mono text-sm">
+				<div class="terminal-row font-mono text-base">
 					<span class="col-permissions text-gray-400">-rw-r--r--</span>
 					<span class="col-user text-gray-400">thein3rovert</span>
 					<span class="col-size text-gray-400">{wordCount}W</span>
@@ -91,8 +91,7 @@ const meta = {
 			1fr; /* title */
 		gap: 8px;
 		align-items: center;
-		font-family: "MonoLisa", ui-monospace, "Courier New", Courier, monospace;
-		font-size: 16px;
+		font-family: "IoskeleyMono";
 		line-height: 1.5;
 		letter-spacing: 0;
 		margin: 0;
@@ -106,7 +105,7 @@ const meta = {
 			grid-template-columns:
 				minmax(80px, auto) /* compact date */
 				1fr; /* title */
-			font-size: 16px; /* Same font on mobile */
+			/* font-size: 16px; Same font on mobile */
 		}
 
 		/* Hide permissions, user, size, individual date parts on mobile */
@@ -123,19 +122,16 @@ const meta = {
 		.col-title::before {
 			content: attr(data-date) " ";
 			color: #9ca3af;
-			font-size: 14px; /* Slightly smaller date prefix on mobile */
 		}
 	}
 
 	/* Extra small screens */
 	@media (max-width: 480px) {
 		.terminal-row {
-			font-size: 16px; /* Same font size */
 			gap: 8px; /* Reduced gap */
 		}
 
 		.col-title::before {
-			font-size: 14px; /* Slightly smaller date prefix */
 		}
 	}
 
@@ -146,7 +142,6 @@ const meta = {
 				minmax(50px, auto) /* size */
 				minmax(80px, auto) /* compact date */
 				1fr; /* title */
-			font-size: 15px; /* Slightly smaller font */
 		}
 
 		/* Hide permissions and user, individual date parts */
@@ -175,7 +170,6 @@ const meta = {
 				minmax(20px, auto) /* day */
 				minmax(40px, auto) /* year */
 				1fr; /* title */
-			font-size: 15px; /* Slightly smaller font */
 		}
 
 		/* Hide only permissions, remove mobile date prefix */
@@ -261,7 +255,5 @@ const meta = {
 		text-decoration: none;
 	}
 
-	a:hover {
-		text-decoration: underline;
-	}
+	/* Remove local hover styling to allow global styles to work */
 </style>

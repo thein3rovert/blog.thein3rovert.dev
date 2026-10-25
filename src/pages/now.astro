@@ -1,0 +1,18 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "What I'm focused on right now",
+	title: "Now",
+};
+
+// Render the now.md markdown file
+const nowPost = await import("../content/now.md");
+const Content = nowPost.default;
+---
+
+<PageLayout meta={meta}>
+	<div class="prose prose-sm prose-cactus max-w-none text-base leading-relaxed">
+		<Content />
+	</div>
+</PageLayout>

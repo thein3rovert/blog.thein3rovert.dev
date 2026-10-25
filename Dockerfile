@@ -7,15 +7,19 @@ FROM node:22-alpine AS builder
 # Set the working directory inside the container
 WORKDIR /app
 
+# Enable pnpm (pinned: lockfile is pnpm 9 format, and pnpm 10+ ignores the
+# package.json "pnpm" config block, which breaks sharp/esbuild build scripts)
+RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
+
 # Copy package.json and lock file first to leverage Docker cache
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml ./
 # Install project dependencies
-RUN npm install
+RUN pnpm install --frozen-lockfile
 
 # Copy the rest of the application code (respects .dockerignore)
 COPY . .
 # Build the Astro site for production
-RUN npm run build
+RUN pnpm build
 # The static files are now in /app/dist
 
 # ---- Runtime Stage ----

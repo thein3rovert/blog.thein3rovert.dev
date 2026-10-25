@@ -2,9 +2,9 @@ name: ci
 
 on:
   push:
-    branches: [main]
+    branches: [dev, master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 permissions:
   contents: read
@@ -21,7 +21,7 @@ jobs:
       - name: install node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 24
 
       - name: install pnpm
         uses: pnpm/action-setup@v2

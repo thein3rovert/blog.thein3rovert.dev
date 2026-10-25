@@ -1,0 +1,18 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "My professional journey and career experience",
+	title: "Career",
+};
+
+// Render the career.md markdown file
+const careerPost = await import("../content/career.md");
+const Content = careerPost.default;
+---
+
+<PageLayout meta={meta}>
+	<div class="prose prose-sm prose-cactus max-w-none text-base leading-relaxed">
+		<Content />
+	</div>
+</PageLayout>
