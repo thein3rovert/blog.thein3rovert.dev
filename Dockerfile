@@ -7,8 +7,9 @@ FROM node:22-alpine AS builder
 # Set the working directory inside the container
 WORKDIR /app
 
-# Enable pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Enable pnpm (pinned: lockfile is pnpm 9 format, and pnpm 10+ ignores the
+# package.json "pnpm" config block, which breaks sharp/esbuild build scripts)
+RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
 
 # Copy package.json and lock file first to leverage Docker cache
 COPY package.json pnpm-lock.yaml ./
